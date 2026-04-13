@@ -552,8 +552,7 @@
     .funnel-stage { min-width: 120px; font-size: 0.72rem; }
 
     /* Footer */
-    .footer-grid { grid-template-columns: 1fr 1fr; }
-    .footer-brand { grid-column: 1 / -1; }
+    /* footer layout handled in footer CSS block */
 
     /* Upload wrapper */
     .upload-wrapper { padding: 1.5rem 1rem; }
@@ -715,9 +714,7 @@
     .dir-header p { font-size: 0.78rem; }
 
     /* Footer */
-    .footer-grid { grid-template-columns: 1fr; gap: 1.25rem; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; }
-    .footer-brand p { max-width: 100%; }
+    /* footer layout handled in footer CSS block */
   }
 
   /* ════════════════════════════════════════
@@ -751,7 +748,7 @@
       padding: 2.5rem;
     }
     .dir-header h1 { font-size: 2.8rem; }
-    .footer-grid { max-width: 1300px; }
+    /* footer max-width handled in footer CSS block */
   }
 
   /* ── PROCESS STATUS ── */
@@ -1040,57 +1037,119 @@
   body.rtl .lang-switcher { margin-left: 0; margin-right: auto; }
   body.rtl header { flex-direction: row-reverse; }
 
-  /* ── FOOTER ── */
+  /* ══════════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════════ */
   .site-footer {
     background: var(--navy);
-    border-top: 2px solid var(--gold);
-    padding: 2.5rem 2rem 1.5rem;
-    margin-top: 2rem;
+    border-top: 3px solid var(--gold);
+    padding: 3rem 2rem 0;
+    margin-top: 3rem;
   }
+
   .footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr;
-    gap: 2rem;
+    grid-template-columns: 1.8fr 1fr 1fr;
+    gap: 2.5rem;
     max-width: 1100px;
     margin: 0 auto;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
   }
+
+  /* Brand column */
   .footer-brand .footer-logo {
     font-family: 'Playfair Display', serif;
-    font-size: 1.4rem; color: var(--gold); margin-bottom: 0.6rem;
+    font-size: 1.5rem; color: var(--gold); margin-bottom: 0.75rem;
+    letter-spacing: 0.5px;
   }
   .footer-brand .footer-logo span { color: #fff; font-weight: 400; }
-  .footer-brand p {
-    font-size: 0.8rem; color: var(--muted); line-height: 1.6; max-width: 240px;
+  .footer-brand > p {
+    font-size: 0.82rem; color: var(--muted); line-height: 1.7;
+    max-width: 260px; margin-bottom: 0.25rem;
   }
-  .footer-col h4 {
-    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px;
-    color: var(--gold-light); font-weight: 700; margin-bottom: 0.85rem;
+
+  /* Contact links */
+  .footer-contact {
+    display: flex; flex-direction: column; gap: 0.55rem; margin-top: 1rem;
   }
-  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.45rem; }
-  .footer-col ul li { font-size: 0.8rem; color: var(--muted); }
-  .footer-col ul li a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
-  .footer-col ul li a:hover { color: var(--gold-light); }
-  .footer-bottom {
-    margin-top: 2rem; padding-top: 1rem;
-    border-top: 1px solid rgba(201,168,76,0.15);
-    display: flex; justify-content: space-between; align-items: center;
-    flex-wrap: wrap; gap: 0.5rem;
-    max-width: 1100px; margin: 1.5rem auto 0;
-  }
-  .footer-bottom p { font-size: 0.72rem; color: var(--muted); }
-  .footer-contact { display: flex; flex-direction: column; gap: 0.3rem; margin-top: 0.75rem; }
   .footer-contact a {
-    font-size: 0.78rem; color: var(--muted); text-decoration: none;
-    display: flex; align-items: center; gap: 0.4rem; transition: color 0.2s;
+    font-size: 0.8rem; color: rgba(255,255,255,0.55); text-decoration: none;
+    display: flex; align-items: center; gap: 0.55rem;
+    transition: color 0.2s; line-height: 1.4;
   }
+  .footer-contact a span { font-size: 1rem; flex-shrink: 0; }
   .footer-contact a:hover { color: var(--gold-light); }
 
+  /* Info columns */
+  .footer-col { padding-top: 0.25rem; }
+  .footer-col h4 {
+    font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--gold); font-weight: 700; margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-col ul {
+    list-style: none; display: flex; flex-direction: column; gap: 0.6rem;
+  }
+  .footer-col ul li { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+  .footer-col ul li a {
+    color: rgba(255,255,255,0.45); text-decoration: none;
+    transition: color 0.2s; display: inline-block;
+  }
+  .footer-col ul li a:hover,
+  .footer-col ul li:hover { color: var(--gold-light); }
+  .footer-col ul li a:hover { color: var(--gold-light); }
+
+  /* Bottom bar */
+  .footer-bottom {
+    padding: 1.25rem 0;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 0.5rem;
+    max-width: 1100px; margin: 0 auto;
+  }
+  .footer-bottom p {
+    font-size: 0.7rem; color: rgba(255,255,255,0.3); margin: 0;
+  }
+  .footer-tagline {
+    font-size: 0.7rem; color: rgba(201,168,76,0.5);
+    font-style: italic; letter-spacing: 0.3px;
+  }
+
+  /* RTL overrides */
   body.rtl .footer-grid { direction: rtl; }
-  body.rtl .footer-brand p { max-width: 100%; }
+  body.rtl .footer-brand > p { max-width: 100%; }
   body.rtl .footer-col ul { align-items: flex-end; }
   body.rtl .footer-bottom { flex-direction: row-reverse; }
+  body.rtl .footer-contact a { flex-direction: row-reverse; }
 
-  /* footer mobile overrides are now in the main responsive block above */
+  /* Footer responsive — tablet */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+    .footer-brand { grid-column: 1 / -1; }
+    .footer-brand > p { max-width: 100%; }
+  }
+
+  /* Footer responsive — mobile */
+  @media (max-width: 540px) {
+    .site-footer { padding: 2rem 1.25rem 0; }
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+      padding-bottom: 1.75rem;
+    }
+    .footer-brand { grid-column: 1; }
+    .footer-contact { gap: 0.6rem; }
+    .footer-bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.3rem;
+      padding: 1rem 0;
+    }
+  }
 
 </style>
 </head>
@@ -1175,31 +1234,31 @@
 
     <!-- KPI Strip -->
     <div class="admin-kpi-strip" id="adminKpiStrip">
-      <div class="kpi-card blue"><div class="kpi-num" id="akpi-total">0</div><div class="kpi-label">Total Candidates</div></div>
-      <div class="kpi-card green"><div class="kpi-num" id="akpi-available">0</div><div class="kpi-label">Available</div></div>
-      <div class="kpi-card amber"><div class="kpi-num" id="akpi-travel">0</div><div class="kpi-label">Travelling</div></div>
-      <div class="kpi-card purple"><div class="kpi-num" id="akpi-probation">0</div><div class="kpi-label">On Probation</div></div>
-      <div class="kpi-card teal"><div class="kpi-num" id="akpi-completed">0</div><div class="kpi-label">Completed</div></div>
-      <div class="kpi-card red"><div class="kpi-num" id="akpi-expiring">0</div><div class="kpi-label">Passport Expiring</div><div class="kpi-sub">within 6 months</div></div>
+      <div class="kpi-card blue"><div class="kpi-num" id="akpi-total">0</div><div class="kpi-label" id="kpiLblTotal">Total Candidates</div></div>
+      <div class="kpi-card green"><div class="kpi-num" id="akpi-available">0</div><div class="kpi-label" id="kpiLblAvailable">Available</div></div>
+      <div class="kpi-card amber"><div class="kpi-num" id="akpi-travel">0</div><div class="kpi-label" id="kpiLblTravelling">Travelling</div></div>
+      <div class="kpi-card purple"><div class="kpi-num" id="akpi-probation">0</div><div class="kpi-label" id="kpiLblProbation">On Probation</div></div>
+      <div class="kpi-card teal"><div class="kpi-num" id="akpi-completed">0</div><div class="kpi-label" id="kpiLblCompleted">Completed</div></div>
+      <div class="kpi-card red"><div class="kpi-num" id="akpi-expiring">0</div><div class="kpi-label" id="kpiLblExpiring">Passport Expiring</div><div class="kpi-sub" id="kpiSubExpiring">within 6 months</div></div>
     </div>
 
     <!-- Pipeline Funnel -->
     <div class="admin-section">
-      <div class="admin-section-title">Pipeline Overview</div>
+      <div class="admin-section-title" id="adminTitlePipeline">Pipeline Overview</div>
       <div class="pipeline-funnel" id="adminPipeline"></div>
     </div>
 
     <!-- Probation Countdown -->
     <div class="probation-section">
-      <div class="admin-section-title" style="padding:0 0 0.85rem">Probation Countdowns <span style="font-size:0.72rem;font-weight:400;color:var(--muted);font-family:'DM Sans',sans-serif">(90-day from travel date)</span></div>
+      <div class="admin-section-title" id="adminTitleProbation" style="padding:0 0 0.85rem">Probation Countdowns <span id="adminSubProbation" style="font-size:0.72rem;font-weight:400;color:var(--muted);font-family:'DM Sans',sans-serif">(90-day from travel date)</span></div>
       <div class="probation-cards" id="probationCards">
-        <div style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0">No candidates currently on probation.</div>
+        <div style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0" id="probationEmpty">No candidates currently on probation.</div>
       </div>
     </div>
 
     <!-- Candidate Table -->
     <div class="admin-section">
-      <div class="admin-section-title">All Candidates</div>
+      <div class="admin-section-title" id="adminTitleCandidates">All Candidates</div>
       <div class="admin-toolbar">
         <input type="text" class="admin-search" id="adminSearch" placeholder="Search name, role, nationality…" oninput="renderAdminDashboard()">
         <select class="admin-filter-select" id="adminStageFilter" onchange="renderAdminDashboard()">
@@ -1224,12 +1283,12 @@
           <thead>
             <tr>
               <th></th>
-              <th>Name</th>
-              <th>Role</th>
-              <th>Nationality</th>
-              <th>Stage</th>
-              <th>Passport Expiry</th>
-              <th>Employer</th>
+              <th id="thName">Name</th>
+              <th id="thRole">Role</th>
+              <th id="thNationality">Nationality</th>
+              <th id="thStage">Stage</th>
+              <th id="thExpiry">Passport Expiry</th>
+              <th id="thEmployer">Employer</th>
               <th></th>
             </tr>
           </thead>
@@ -1480,9 +1539,9 @@ function doLogin() {
     isRecruiter = true;
     localStorage.setItem('twRecruiterSession', '1');
     activateRecruiterUI();
-    showToast('✓ Recruiter access granted');
+    showToast(t('accessGranted'));
   } else {
-    showToast('Incorrect credentials. Please try again.');
+    showToast(t('wrongCredentials'));
   }
 }
 
@@ -1495,10 +1554,10 @@ function updateHeaderLoginBtn() {
   const btn = document.getElementById('headerLoginBtn');
   if (!btn) return;
   if (isRecruiter) {
-    btn.textContent = '🔓 Logout';
+    btn.textContent = t('logoutBtn');
     btn.classList.add('logout');
   } else {
-    btn.textContent = '🔐 Login';
+    btn.textContent = t('loginBtn');
     btn.classList.remove('logout');
   }
 }
@@ -1522,7 +1581,7 @@ function logoutRecruiter() {
   showPage('directory', null);
   document.querySelectorAll('.recruiter-nav button').forEach(b => b.classList.remove('active'));
   renderDirectory();
-  showToast('Logged out of recruiter mode.');
+  showToast(t('loggedOut'));
 }
 
 // ── FILTER HELPERS ──
@@ -1603,7 +1662,7 @@ function openModal(id) {
   const c = candidates.find(x => x.id === id);
   if (!c) return;
   document.getElementById('modalName').textContent = `${c.firstName} ${c.lastName}`;
-  document.getElementById('modalRole').textContent = c.role || 'Role not specified';
+  document.getElementById('modalRole').textContent = c.role || t('roleNotSpecified');
   const ph = document.getElementById('modalPhoto');
   ph.innerHTML = c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤';
 
@@ -1615,8 +1674,8 @@ function openModal(id) {
     <div class="reserved-notice">
       <div class="r-icon">🔒</div>
       <div class="r-text">
-        <strong>This candidate is currently reserved</strong>
-        ${timeLeft ? `Hold expires in ${timeLeft}` : 'Hold expires soon'}
+        <strong>${t('reservedNotice')}</strong>
+        ${timeLeft ? `${t('holdExpires')} ${timeLeft}` : t('holdExpiresSoon')}
       </div>
     </div>` : '';
 
@@ -1625,11 +1684,11 @@ function openModal(id) {
     : `<button class="reserve-btn" onclick="askReserve(${id})">🔒 ${t('reserveBtn')}</button>`;
 
   const editBtn = isRecruiter
-    ? `<button onclick="openEditModal(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid var(--gold);color:#856404;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">✏️ Edit Profile</button>`
+    ? `<button onclick="openEditModal(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid var(--gold);color:#856404;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('editProfile')}</button>`
     : '';
 
   const deleteBtn = isRecruiter
-    ? `<button onclick="deleteCandidate(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #fecaca;color:var(--danger);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">Delete Profile</button>`
+    ? `<button onclick="deleteCandidate(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #fecaca;color:var(--danger);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('deleteProfile')}</button>`
     : '';
 
 
@@ -1652,7 +1711,7 @@ function openModal(id) {
 
     ${isRecruiter ? `
     <div class="modal-section">
-      <div class="modal-section-title">Process Status</div>
+      <div class="modal-section-title">${t('processStatus')}</div>
       <div class="status-pipeline">
         ${renderProcessBar(getProcessStage(c))}
         <select class="pipeline-select" onchange="saveProcessStage(${c.id}, this.value)">
@@ -1663,16 +1722,16 @@ function openModal(id) {
 
     ${isRecruiter && (c.placementEmployer || getProcessStage(c) === 'Travel' || getProcessStage(c) === 'Completed') ? `
     <div class="placement-section">
-      <h4>📍 Placement Details</h4>
+      <h4>📍 ${t('placementDetails')}</h4>
       <div class="placement-grid">
-        <div class="placement-field"><label>Employer / Family</label><input type="text" id="pl_employer_${c.id}" value="${c.placementEmployer||''}" placeholder="e.g. Al-Rashid Family"></div>
-        <div class="placement-field"><label>Location</label><input type="text" id="pl_location_${c.id}" value="${c.placementLocation||''}" placeholder="e.g. Riyadh, Saudi Arabia"></div>
-        <div class="placement-field"><label>Start Date</label><input type="date" id="pl_start_${c.id}" value="${c.placementStartDate||''}"></div>
-        <div class="placement-field"><label>End Date</label><input type="date" id="pl_end_${c.id}" value="${c.placementEndDate||''}"></div>
+        <div class="placement-field"><label>${t('employerFamily')}</label><input type="text" id="pl_employer_${c.id}" value="${c.placementEmployer||''}" placeholder="e.g. Al-Rashid Family"></div>
+        <div class="placement-field"><label>${t('locationLabel')}</label><input type="text" id="pl_location_${c.id}" value="${c.placementLocation||''}" placeholder="e.g. Riyadh, Saudi Arabia"></div>
+        <div class="placement-field"><label>${t('startDate')}</label><input type="date" id="pl_start_${c.id}" value="${c.placementStartDate||''}"></div>
+        <div class="placement-field"><label>${t('endDate')}</label><input type="date" id="pl_end_${c.id}" value="${c.placementEndDate||''}"></div>
       </div>
-      <div class="placement-field" style="margin-top:0.5rem"><label>Notes</label><input type="text" id="pl_notes_${c.id}" value="${c.placementNotes||''}" placeholder="Any placement notes…"></div>
-      <button class="placement-save-btn" onclick="savePlacement(${c.id})">Save Placement Details</button>
-    </div>` : isRecruiter ? `<div style="margin-bottom:0.75rem"><button onclick="saveProcessStage(${c.id},'Travel');openModal(${c.id})" style="width:100%;padding:0.55rem;background:#fff;border:1.5px solid #e8eaf6;color:var(--muted);border-radius:8px;font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer">+ Add Placement Details</button></div>` : ''}
+      <div class="placement-field" style="margin-top:0.5rem"><label>${t('placementNotes')}</label><input type="text" id="pl_notes_${c.id}" value="${c.placementNotes||''}" placeholder="Any placement notes…"></div>
+      <button class="placement-save-btn" onclick="savePlacement(${c.id})">${t('savePlacement')}</button>
+    </div>` : isRecruiter ? `<div style="margin-bottom:0.75rem"><button onclick="saveProcessStage(${c.id},'Travel');openModal(${c.id})" style="width:100%;padding:0.55rem;background:#fff;border:1.5px solid #e8eaf6;color:var(--muted);border-radius:8px;font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer">${t('addPlacement')}</button></div>` : ''}
 
     <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;">
       ${isRecruiter ? `
@@ -1708,7 +1767,7 @@ function askReserve(id) {
   if (!c) return;
   pendingReserveId = id;
   document.getElementById('confirmTitle').textContent = `${t('reserveBtn').replace('🔒 ','')} ${c.firstName} ${c.lastName}?`;
-  document.getElementById('confirmMsg').innerHTML = `Are you sure you want to reserve <strong>${c.firstName} ${c.lastName}</strong>?<br><br>This profile will be hidden from other users for <strong>48 hours</strong> while you process documentation. If the reservation is not completed, the profile will become visible again automatically.`;
+  document.getElementById('confirmMsg').innerHTML = `${t('confirmMsgTpl')}`;
   document.querySelector('.confirm-yes').textContent = t('confirmYes');
   document.querySelector('.confirm-no').textContent = t('confirmNo');
   document.getElementById('confirmOverlay').classList.add('open');
@@ -1725,17 +1784,17 @@ function confirmReserve() {
   closeConfirm();
   closeModal();
   renderDirectory();
-  showToast('✓ Candidate reserved for 48 hours');
+  showToast(t('reserved48'));
 }
 
 // ── DELETE (recruiter only) ──
 function deleteCandidate(id) {
-  if (!confirm('Delete this candidate profile?')) return;
+  if (!confirm(t('deleteConfirm'))) return;
   candidates = candidates.filter(c => c.id !== id);
   localStorage.setItem('twCandidates', JSON.stringify(candidates));
   renderDirectory();
   document.getElementById('modalOverlay').classList.remove('open');
-  showToast('Profile deleted.');
+  showToast(t('profileDeleted'));
 }
 
 // ── ADD CANDIDATE (recruiter only) ──
@@ -1747,7 +1806,7 @@ function handlePhoto(input) {
     currentPhoto = e.target.result;
     document.getElementById('dropContent').innerHTML = `
       <img src="${currentPhoto}" class="photo-preview-portrait" alt="Passport Preview">
-      <div class="drop-text" style="font-size:0.75rem;color:var(--muted)">Passport uploaded — tap to change</div>
+      <div class="drop-text" style="font-size:0.75rem;color:var(--muted)">${t('passportScan')} — ${t('passportScanSub')}</div>
     `;
     runAIAutofill(currentPhoto);
   };
@@ -1975,9 +2034,9 @@ function handleProfilePhoto(input) {
     profilePhoto = e.target.result;
     document.getElementById('profilePhotoContent').innerHTML = `
       <img src="${profilePhoto}" class="photo-preview-portrait" alt="Profile Preview">
-      <div class="drop-text" style="font-size:0.75rem;color:var(--muted)">Tap to change</div>
+      <div class="drop-text" style="font-size:0.75rem;color:var(--muted)">${t('photoLabel')} — ${t('photoSub')}</div>
     `;
-    showToast('✓ Profile photo uploaded');
+    showToast('✓ ' + t('photoLabel'));
   };
   reader.readAsDataURL(file);
 }
@@ -1986,17 +2045,17 @@ async function runAIAutofill(base64Image) {
   const loading = document.getElementById('aiLoading');
   const loadingSpan = document.getElementById('aiLoading').querySelector('span');
   loading.classList.add('visible');
-  loadingSpan.textContent = 'Loading OCR engine…';
+  loadingSpan.textContent = t('ocrLoading');
 
   try {
-    loadingSpan.textContent = 'Scanning passport image…';
+    loadingSpan.textContent = t('ocrScanning');
 
     const result = await Tesseract.recognize(base64Image, 'eng', {
       tessedit_pageseg_mode: '3',
     });
 
     const rawText = result.data.text;
-    loadingSpan.textContent = 'Extracting fields…';
+    loadingSpan.textContent = t('ocrExtracting');
 
     // DEBUG: show raw MRZ lines in console and toast
     const debugLines = rawText.split('\n').map(l => l.trim()).filter(Boolean);
@@ -2125,13 +2184,13 @@ function resetForm() {
   profilePhoto = null;
   document.getElementById('profilePhotoContent').innerHTML = `
     <div class="drop-icon">🧑</div>
-    <div class="drop-text">Profile Photo</div>
-    <div class="drop-sub">Full-body or face photo</div>
+    <div class="drop-text">${t('photoLabel')}</div>
+    <div class="drop-sub">${t('photoSub')}</div>
   `;
   document.getElementById('dropContent').innerHTML = `
     <div class="drop-icon">🛂</div>
-    <div class="drop-text">Passport Scan</div>
-    <div class="drop-sub">Auto-fills details</div>
+    <div class="drop-text">${t('passportScan')}</div>
+    <div class="drop-sub">${t('passportScanSub')}</div>
     <div class="autofill-tag" style="font-size:0.65rem;margin-top:0.5rem">✦ OCR</div>
   `;
 }
@@ -2156,7 +2215,7 @@ async function downloadCV(id) {
   if (!c) return;
 
   const btn = document.getElementById('dlBtn_' + id);
-  if (btn) { btn.disabled = true; btn.textContent = 'Generating PDF…'; }
+  if (btn) { btn.disabled = true; btn.textContent = t('generatingPdf'); }
 
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
@@ -2382,8 +2441,8 @@ async function downloadCV(id) {
   // ══════════════════════════════════════════
   doc.save(`${c.firstName}_${c.lastName}_CV.pdf`);
 
-  if (btn) { btn.disabled = false; btn.innerHTML = '⬇ Download CV (PDF)'; }
-  showToast(`✓ CV downloaded for ${c.firstName} ${c.lastName}`);
+  if (btn) { btn.disabled = false; btn.innerHTML = t('downloadCV'); }
+  showToast(t('cvDownloaded') + ' ' + c.firstName + ' ' + c.lastName);
 }
 
 // Helper: load remote image as base64 via canvas (CORS-safe)
@@ -2418,7 +2477,7 @@ function toggleCompare(id) {
   if (compareList.includes(id)) {
     compareList = compareList.filter(x => x !== id);
   } else {
-    if (compareList.length >= 3) { showToast('You can compare up to 3 candidates at once.'); return; }
+    if (compareList.length >= 3) { showToast(t('compareMax')); return; }
     compareList.push(id);
   }
   updateCompareBar();
@@ -2443,7 +2502,7 @@ function clearCompare() {
 }
 
 function openCompareModal() {
-  if (compareList.length < 2) { showToast('Select at least 2 candidates to compare.'); return; }
+  if (compareList.length < 2) { showToast(t('compareMin')); return; }
   const cs = compareList.map(id => candidates.find(x => x.id === id)).filter(Boolean);
   const fields = [
     ['Role', c => c.role||'—'],
@@ -2476,22 +2535,25 @@ function openEditModal(id) {
   const educations = ['Primary','Secondary (Form 4)','Certificate','Diploma','Degree'];
   const statuses = ['Available','Placed'];
   const contracts = ['1 Year','2 Years','3 Years'];
+  const eduOpts = [t('optPrimary'),t('optSecondary'),t('optCertificate'),t('optDiploma'),t('optDegree')];
+  const statusOpts = [t('optAvailable'),t('optPlaced')];
+  const contractOpts = [t('opt1Year'),t('opt2Years'),t('opt3Years')];
   document.getElementById('editModalBody').innerHTML = `
     <div class="form-grid">
-      <div class="form-group"><label>First Name</label><input type="text" id="e_firstName" value="${c.firstName||''}"></div>
-      <div class="form-group"><label>Last Name</label><input type="text" id="e_lastName" value="${c.lastName||''}"></div>
-      <div class="form-group"><label>Role</label><select id="e_role">${roles.map(r=>`<option${c.role===r?' selected':''}>${r}</option>`).join('')}</select></div>
-      <div class="form-group"><label>Experience (yrs)</label><input type="number" id="e_experience" value="${c.experience||''}" min="0" max="40"></div>
-      <div class="form-group"><label>Nationality</label><input type="text" id="e_nationality" value="${c.nationality||''}"></div>
-      <div class="form-group"><label>Phone</label><input type="text" id="e_phone" value="${c.phone||''}"></div>
-      <div class="form-group"><label>Education</label><select id="e_education">${educations.map(e=>`<option${c.education===e?' selected':''}>${e}</option>`).join('')}</select></div>
-      <div class="form-group"><label>Status</label><select id="e_status">${statuses.map(s=>`<option${c.status===s?' selected':''}>${s}</option>`).join('')}</select></div>
-      <div class="form-group"><label>Salary (SAR/mo)</label><input type="number" id="e_salary" value="${c.salary||''}" min="0"></div>
-      <div class="form-group"><label>Contract Period</label><select id="e_contractPeriod"><option value="">None</option>${contracts.map(cp=>`<option${c.contractPeriod===cp?' selected':''}>${cp}</option>`).join('')}</select></div>
-      <div class="form-group full"><label>Skills</label><input type="text" id="e_skills" value="${c.skills||''}"></div>
-      <div class="form-group full"><label>Notes</label><textarea id="e_notes">${c.notes||''}</textarea></div>
+      <div class="form-group"><label>${t('firstName')}</label><input type="text" id="e_firstName" value="${c.firstName||''}"></div>
+      <div class="form-group"><label>${t('lastName')}</label><input type="text" id="e_lastName" value="${c.lastName||''}"></div>
+      <div class="form-group"><label>${t('rolePosition')}</label><select id="e_role">${roles.map(r=>`<option value="${r}"${c.role===r?' selected':''}>${r}</option>`).join('')}</select></div>
+      <div class="form-group"><label>${t('yearsOfExp')}</label><input type="number" id="e_experience" value="${c.experience||''}" min="0" max="40"></div>
+      <div class="form-group"><label>${t('nationality')}</label><input type="text" id="e_nationality" value="${c.nationality||''}"></div>
+      <div class="form-group"><label>${t('phoneNumber')}</label><input type="text" id="e_phone" value="${c.phone||''}"></div>
+      <div class="form-group"><label>${t('educationLevel')}</label><select id="e_education">${educations.map((e,i)=>`<option value="${e}"${c.education===e?' selected':''}>${eduOpts[i]||e}</option>`).join('')}</select></div>
+      <div class="form-group"><label>${t('status')}</label><select id="e_status">${statuses.map((s,i)=>`<option value="${s}"${c.status===s?' selected':''}>${statusOpts[i]||s}</option>`).join('')}</select></div>
+      <div class="form-group"><label>${t('expectedSalary')}</label><input type="number" id="e_salary" value="${c.salary||''}" min="0"></div>
+      <div class="form-group"><label>${t('contractPeriod')}</label><select id="e_contractPeriod"><option value="">—</option>${contracts.map((cp,i)=>`<option value="${cp}"${c.contractPeriod===cp?' selected':''}>${contractOpts[i]||cp}</option>`).join('')}</select></div>
+      <div class="form-group full"><label>${t('skills')}</label><input type="text" id="e_skills" value="${c.skills||''}"></div>
+      <div class="form-group full"><label>${t('additionalNotes')}</label><textarea id="e_notes">${c.notes||''}</textarea></div>
     </div>
-    <button class="edit-save-btn" onclick="saveEdit(${id})">Save Changes →</button>
+    <button class="edit-save-btn" onclick="saveEdit(${id})">${t('editSave')}</button>
   `;
   document.getElementById('editModalOverlay').classList.add('open');
 }
@@ -2522,7 +2584,7 @@ function saveEdit(id) {
   closeEditModal();
   closeModal();
   renderDirectory();
-  showToast('✓ Profile updated successfully');
+  showToast(t('profileUpdated'));
 }
 
 
@@ -2575,7 +2637,7 @@ function saveProcessStage(id, stage) {
   if (isRecruiter) renderAdminDashboard();
   // Reopen modal with updated data after a brief tick
   setTimeout(() => openModal(id), 50);
-  showToast('✓ Stage updated to: ' + stage);
+  showToast(t('stageUpdated') + ' ' + stage);
 }
 
 function savePlacement(id) {
@@ -2589,7 +2651,7 @@ function savePlacement(id) {
   localStorage.setItem('twCandidates', JSON.stringify(candidates));
   renderDirectory();
   if (isRecruiter) renderAdminDashboard();
-  showToast('✓ Placement details saved');
+  showToast(t('placementSaved'));
 }
 
 // ══════════════════════════════════════════
@@ -2600,7 +2662,7 @@ function openPrintView(id) {
   if (!c) return;
 
   document.getElementById('printName').textContent = c.firstName + ' ' + c.lastName;
-  document.getElementById('printRole').textContent = c.role || 'Role not specified';
+  document.getElementById('printRole').textContent = c.role || t('roleNotSpecified');
   const ph = document.getElementById('printPhoto');
   ph.innerHTML = c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤';
 
@@ -2609,56 +2671,55 @@ function openPrintView(id) {
 
   document.getElementById('printBody').innerHTML = `
     <div class="print-section">
-      <div class="print-section-title">Process Status</div>
+      <div class="print-section-title">${t('processStatus')}</div>
       ${renderProcessBar(stage)}
-      <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted)">Current stage: <strong style="color:var(--navy)">${stage}</strong></div>
+      <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted)">${t('currentStage')} <strong style="color:var(--navy)">${stage}</strong></div>
     </div>
     <div class="print-section">
-      <div class="print-section-title">Personal Details</div>
+      <div class="print-section-title">${t('personalDetails')}</div>
       <div class="print-fields">
-        ${row('Full Name', c.firstName+' '+c.lastName)}
-        ${row('Date of Birth', c.dob)}
-        ${row('Gender', c.gender)}
-        ${row('Nationality', c.nationality)}
-        ${row('Education', c.education)}
-        ${row('Phone', c.phone)}
+        ${row(t('dob'), c.dob)}
+        ${row(t('gender'), c.gender)}
+        ${row(t('nationality'), c.nationality)}
+        ${row(t('education'), c.education)}
+        ${row(t('phoneNumber'), c.phone)}
       </div>
     </div>
     <div class="print-section">
-      <div class="print-section-title">Work Details</div>
+      <div class="print-section-title">${t('workDetails')}</div>
       <div class="print-fields">
-        ${row('Role', c.role)}
-        ${row('Experience', c.experience ? c.experience+' years' : '')}
-        ${row('Salary', c.salary ? 'SAR '+c.salary+'/mo' : '')}
-        ${row('Contract', c.contractPeriod)}
-        ${row('Status', c.status)}
-        ${row('Skills', c.skills)}
+        ${row(t('role'), c.role)}
+        ${row(t('experience'), c.experience ? `<span dir="ltr">${c.experience} ${t('yearsExp')}</span>` : '')}
+        ${row(t('salary'), c.salary ? `<span dir="ltr">SAR ${c.salary}${t('perMonth')}</span>` : '')}
+        ${row(t('contract'), c.contractPeriod)}
+        ${row(t('status'), c.status)}
+        ${row(t('skills'), c.skills)}
       </div>
     </div>
     <div class="print-section">
-      <div class="print-section-title">Passport Details</div>
+      <div class="print-section-title">${t('passportDetails')}</div>
       <div class="print-fields">
-        ${row('Passport No.', c.passportNo)}
-        ${row('Issue Date', c.passportIssue)}
-        ${row('Expiry Date', c.passportExpiry)}
-        ${row('Issuing Country', c.passportCountry)}
+        ${row(t('passportNo'), c.passportNo)}
+        ${row(t('issueDate'), c.passportIssue)}
+        ${row(t('expiryDate'), c.passportExpiry)}
+        ${row(t('issuingCountry'), c.passportCountry)}
       </div>
     </div>
     ${c.placementEmployer ? `
     <div class="print-section">
-      <div class="print-section-title">Placement Details</div>
+      <div class="print-section-title">${t('placementDetails')}</div>
       <div class="print-fields">
-        ${row('Employer', c.placementEmployer)}
-        ${row('Location', c.placementLocation)}
-        ${row('Start Date', c.placementStartDate)}
-        ${row('End Date', c.placementEndDate)}
+        ${row(t('employerFamily'), c.placementEmployer)}
+        ${row(t('locationLabel'), c.placementLocation)}
+        ${row(t('startDate'), c.placementStartDate)}
+        ${row(t('endDate'), c.placementEndDate)}
       </div>
       ${c.placementNotes ? `<div style="margin-top:0.5rem;font-size:0.8rem;color:var(--text)">${c.placementNotes}</div>` : ''}
     </div>` : ''}
-    ${c.notes ? `<div class="print-section"><div class="print-section-title">Notes</div><p style="font-size:0.85rem;color:var(--text);line-height:1.6">${c.notes}</p></div>` : ''}
+    ${c.notes ? `<div class="print-section"><div class="print-section-title">${t('aboutLabel')}</div><p style="font-size:0.85rem;color:var(--text);line-height:1.6">${c.notes}</p></div>` : ''}
     <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #f0f0f0;display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted)">
-      <span>RecGlobal Candidate Portal</span>
-      <span>Generated ${new Date().toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})}</span>
+      <span>${t('printPortal')}</span>
+      <span>${t('printGenerated')} ${new Date().toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})}</span>
     </div>
   `;
 
@@ -2752,7 +2813,7 @@ function renderAdminDashboard() {
 
   if (onProbation.length === 0) {
     document.getElementById('probationCards').innerHTML =
-      `<div style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0">No candidates currently on probation.</div>`;
+      `<div style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0">${t('adminNoProbation')}</div>`;
   } else {
     document.getElementById('probationCards').innerHTML = onProbation.map(c => {
       const p = getProbationInfo(c);
@@ -2763,14 +2824,14 @@ function renderAdminDashboard() {
       const employerText = c.placementEmployer ? ` · ${c.placementEmployer}` : '';
       const endStr = p.end.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'});
       const countdownHtml = p.done
-        ? `<div class="prob-complete">✓ Complete</div>`
-        : `<div class="prob-days">${p.daysLeft}</div><div class="prob-days-label">days left</div>`;
+        ? `<div class="prob-complete">${t('probComplete')}</div>`
+        : `<div class="prob-days">${p.daysLeft}</div><div class="prob-days-label">${t('probDaysLeft')}</div>`;
       return `<div class="probation-card" onclick="openModal(${c.id})">
         ${photoHtml}
         <div>
           <div class="prob-name">${c.firstName} ${c.lastName}</div>
           <div class="prob-meta">${c.role||''}${employerText}</div>
-          <div class="prob-meta">Travel: ${p.start.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})} · End: ${endStr}</div>
+          <div class="prob-meta">${t('probTravel')}: ${p.start.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})} · ${t('probEnd')}: ${endStr}</div>
           <div class="prob-bar-wrap"><div class="prob-bar ${barClass}" style="width:${p.pct}%"></div></div>
         </div>
         <div class="prob-countdown">${countdownHtml}</div>
@@ -2807,7 +2868,7 @@ function renderAdminDashboard() {
       <td class="td-stage"><span style="background:${stageBg};color:${stageCol}">${stage}</span></td>
       <td style="${expiryStyle};font-size:0.75rem">${expiry}</td>
       <td style="font-size:0.75rem;color:var(--muted)">${employer}</td>
-      <td><button class="td-action" onclick="event.stopPropagation();openModal(${c.id})">Open</button></td>
+      <td><button class="td-action" onclick="event.stopPropagation();openModal(${c.id})">${t('viewBtn')}</button></td>
     </tr>`;
   }).join('');
 }
@@ -2819,121 +2880,429 @@ function renderAdminDashboard() {
 const TRANSLATIONS = {
   en: {
     // Header/hero
-    heroTitle:      'Available <span>Candidates</span>',
-    heroSub:        'Browse profiles — click a card to view full details and reserve',
-    searchPH:       'Search by name, role, nationality…',
-    statusLabel:    'Status:',
-    allFilter:      'All',
-    availableFilter:'Available',
-    placedFilter:   'Placed',
-    roleLabel:      'Role:',
-    sortLabel:      'Sort:',
-    allRoles:       'All roles',
-    sortNewest:     'Newest first',
-    sortName:       'Name A–Z',
-    sortExp:        'Most experienced',
-    viewBtn:        'View Profile',
+    heroTitle:        'Available <span>Candidates</span>',
+    heroSub:          'Browse profiles — click a card to view full details and reserve',
+    searchPH:         'Search by name, role, nationality…',
+    statusLabel:      'Status:',
+    allFilter:        'All',
+    availableFilter:  'Available',
+    placedFilter:     'Placed',
+    roleLabel:        'Role:',
+    sortLabel:        'Sort:',
+    allRoles:         'All roles',
+    sortNewest:       'Newest first',
+    sortName:         'Name A–Z',
+    sortExp:          'Most experienced',
+    viewBtn:          'View Profile',
+    loginBtn:         '🔐 Login',
+    logoutBtn:        '🔓 Logout',
+    // Recruiter nav
+    navDirectory:     'Directory',
+    navDashboard:     'Dashboard',
+    navAddCandidate:  '+ Add Candidate',
+    // Stats bar
+    statTotal:        'Total',
+    statAvailable:    'Available',
+    statTravelling:   'Travelling',
+    statReserved:     'Reserved',
+    statCompleted:    'Completed',
     // Modal
-    personalDetails:'Personal Details',
-    workDetails:    'Work Details',
-    aboutLabel:     'About',
-    passportDetails:'Passport Details',
-    reserveBtn:     '🔒 Reserve This Candidate',
-    reservedBtn:    '🔒 Currently Reserved',
-    downloadCV:     '⬇ Download CV (PDF)',
-    sendEnquiry:    'Send Enquiry',
-    enquiryName:    'Your name',
-    enquiryPhone:   'Your phone / WhatsApp',
-    sendWA:         '💬 Send via WhatsApp',
+    personalDetails:  'Personal Details',
+    workDetails:      'Work Details',
+    aboutLabel:       'About',
+    passportDetails:  'Passport Details',
+    reserveBtn:       'Reserve This Candidate',
+    reservedBtn:      'Currently Reserved',
+    downloadCV:       '⬇ Download CV (PDF)',
+    sendEnquiry:      'Send Enquiry',
+    enquiryName:      'Your name',
+    enquiryPhone:     'Your phone / WhatsApp',
+    enquiryMsg:       'Message about',
+    sendWA:           '💬 Send via WhatsApp',
+    editProfile:      '✏️ Edit Profile',
+    deleteProfile:    'Delete Profile',
+    processStatus:    'Process Status',
+    currentStage:     'Current stage:',
+    placementDetails: 'Placement Details',
+    addPlacement:     '+ Add Placement Details',
+    savePlacement:    'Save Placement Details',
+    employerFamily:   'Employer / Family',
+    locationLabel:    'Location',
+    startDate:        'Start Date',
+    endDate:          'End Date',
+    placementNotes:   'Notes',
+    reservedNotice:   'This candidate is currently reserved',
+    holdExpires:      'Hold expires in',
+    holdExpiresSoon:  'Hold expires soon',
+    generatingPdf:    'Generating PDF…',
+    roleNotSpecified: 'Role not specified',
+    // Confirm dialog
+    confirmYes:       'Yes, reserve',
+    confirmNo:        'No, go back',
+    confirmMsgTpl:    'This profile will be hidden from other users for 48 hours while you process documentation.',
+    // Login page
+    loginTitle:       'Recruiter Access',
+    loginSub:         'Enter your recruiter credentials to access the RecGlobal management portal.',
+    loginUser:        'Username',
+    loginPass:        'Password',
+    loginSubmit:      'Sign In →',
+    // Add candidate form
+    addTitle:         'Add Candidate Profile',
+    addSubtitle:      'Upload a profile photo and scan the passport — fields will be filled automatically.',
+    photoLabel:       'Profile Photo',
+    photoSub:         'Full-body or face photo',
+    passportScan:     'Passport Scan',
+    passportScanSub:  'Auto-fills details',
+    scanningOCR:      'Reading passport — this may take a few seconds…',
+    sectionPersonal:  'Personal Details',
+    sectionPassport:  'Passport Details',
+    sectionWork:      'Work Details',
+    sectionSalary:    'Salary & Contract',
+    sectionNotes:     'Notes & Skills',
+    firstName:        'First Name',
+    lastName:         'Last Name',
+    phoneNumber:      'Phone Number',
+    homeAddress:      'Home Address',
+    passportNumber:   'Passport Number',
+    issuingCountry:   'Issuing Country',
+    yearsOfExp:       'Years of Experience',
+    expectedSalary:   'Expected Salary (SAR/month)',
+    skillsLangs:      'Skills / Languages',
+    additionalNotes:  'Additional Notes',
+    submitCandidate:  'Save Candidate Profile →',
+    // Admin dashboard
+    adminTotal:       'Total Candidates',
+    adminAvailable:   'Available',
+    adminTravelling:  'Travelling',
+    adminProbation:   'On Probation',
+    adminCompleted:   'Completed',
+    adminExpiring:    'Passport Expiring',
+    adminExpiringSub: 'within 6 months',
+    adminPipeline:    'Pipeline Overview',
+    adminProbTitle:   'Probation Countdowns',
+    adminProbSub:     '(90-day from travel date)',
+    adminNoProbation: 'No candidates currently on probation.',
+    adminAllCandidates:'All Candidates',
+    adminSearchPH:    'Search name, role, nationality…',
+    adminAllStages:   'All stages',
+    adminSortNewest:  'Newest',
+    adminSortName:    'Name A–Z',
+    adminSortStage:   'By Stage',
+    adminSortExp:     'Experience',
+    colName:          'Name',
+    colRole:          'Role',
+    colNationality:   'Nationality',
+    colStage:         'Stage',
+    colExpiry:        'Passport Expiry',
+    colEmployer:      'Employer',
+    probDaysLeft:     'days left',
+    probComplete:     'Completed ✓',
+    // Compare
+    compareTitle:     'Candidate Comparison',
+    compareField:     'Field',
+    compareEnglish:   'English',
+    compareArabic:    'Arabic',
+    compareBtn:       'Compare →',
+    compareClear:     'Clear all',
+    compareMax:       'You can compare up to 3 candidates at once.',
+    compareMin:       'Select at least 2 candidates to compare.',
+    // Edit modal
+    editTitle:        'Edit Candidate',
+    editSave:         'Save Changes →',
+    // Print view
+    printClose:       '✕ Close',
+    printSave:        '🖨 Print / Save PDF',
+    printGenerated:   'Generated',
+    printPortal:      'RecGlobal Candidate Portal',
     // Footer
-    ftDesc:         'Professional domestic labour recruitment connecting qualified candidates with families across the Gulf region.',
-    ftPhone:        '+254 780 803 955',
-    ftLocation:     'Nairobi, Kenya',
-    ftServicesTitle:'Services',
-    ftS1:           'Domestic Worker Placement',
-    ftS2:           'Document Processing',
-    ftS3:           'Visa Assistance',
-    ftS4:           'Pre-departure Training',
-    ftS5:           'Post-placement Support',
-    ftInfoTitle:    'Information',
-    ftI1:           'How It Works',
-    ftI2:           'Browse Candidates',
-    ftI3:           'Requirements',
-    ftI4:           'Contact Us',
-    ftI5:           'Privacy Policy',
-    ftCopy:         '© 2026 RecGlobal. All rights reserved.',
-    ftTagline:      'Trusted Labour Recruitment — Kenya · Gulf Region',
+    ftDesc:           'Professional domestic labour recruitment connecting qualified candidates with families across the Gulf region.',
+    ftPhone:          '+254 780 803 955',
+    ftLocation:       'Nairobi, Kenya',
+    ftServicesTitle:  'Services',
+    ftS1:             'Domestic Worker Placement',
+    ftS2:             'Document Processing',
+    ftS3:             'Visa Assistance',
+    ftS4:             'Pre-departure Training',
+    ftS5:             'Post-placement Support',
+    ftInfoTitle:      'Information',
+    ftI1:             'How It Works',
+    ftI2:             'Browse Candidates',
+    ftI3:             'Requirements',
+    ftI4:             'Contact Us',
+    ftI5:             'Privacy Policy',
+    ftCopy:           '© 2026 RecGlobal. All rights reserved.',
+    ftTagline:        'Trusted Labour Recruitment — Kenya · Gulf Region',
     // Empty states
-    noResults:      'No results found',
-    noResultsSub:   'Try a different search term or clear filters.',
-    noCandidates:   'No candidates available',
-    noCandidatesSub:'Check back soon for new profiles.',
-    // Reserve dialog
-    confirmYes:     'Yes, reserve',
-    confirmNo:      'No, go back',
+    noResults:        'No results found',
+    noResultsSub:     'Try a different search term or clear filters.',
+    noCandidates:     'No candidates available',
+    noCandidatesSub:  'Check back soon for new profiles.',
     // Fields
-    dob:            'Date of Birth', gender: 'Gender', nationality: 'Nationality',
-    education:      'Education', role: 'Role', experience: 'Experience',
-    status:         'Status', skills: 'Skills', salary: 'Salary', contract: 'Contract',
-    passportNo:     'Passport No.', issueDate: 'Issue Date', expiryDate: 'Expiry Date',
-    issuingCountry: 'Issuing Country',
-    yearsExp:       'years',
+    dob:              'Date of Birth',
+    gender:           'Gender',
+    nationality:      'Nationality',
+    education:        'Education',
+    role:             'Role',
+    experience:       'Experience',
+    status:           'Status',
+    skills:           'Skills',
+    salary:           'Salary',
+    contract:         'Contract',
+    passportNo:       'Passport No.',
+    issueDate:        'Issue Date',
+    expiryDate:       'Expiry Date',
+    yearsExp:         'years',
+    perMonth:         '/month',
+    // Select option defaults
+    selectGender:     'Select',
+    selectRole:       'Select role',
+    selectEducation:  'Select',
+    selectContract:   'Select',
+    rolePosition:     'Role / Position',
+    educationLevel:   'Education Level',
+    contractPeriod:   'Contract Period',
+    // Gender options
+    optFemale:        'Female',
+    optMale:          'Male',
+    optOther:         'Other',
+    // Education options
+    optPrimary:       'Primary',
+    optSecondary:     'Secondary (Form 4)',
+    optCertificate:   'Certificate',
+    optDiploma:       'Diploma',
+    optDegree:        'Degree',
+    // Contract options
+    opt1Year:         '1 Year',
+    opt2Years:        '2 Years',
+    opt3Years:        '3 Years',
+    // Status options
+    optAvailable:     'Available',
+    optPlaced:        'Placed',
+    // Process stages (display labels only)
+    stageNew:         'New',
+    stageTraining:    'Training',
+    stagePassport:    'Passport & PCC',
+    stageMedical:     'Medical',
+    stageVisa:        'Visa Application',
+    stageTravel:      'Travel',
+    stageCompleted:   'Completed',
+    // Probation
+    ocrLoading:       'Loading OCR engine…',
+    ocrScanning:      'Scanning passport image…',
+    ocrExtracting:    'Extracting fields…',
+    profileDeleted:   'Profile deleted.',
+    stageUpdated:     '✓ Stage updated to:',
+    placementSaved:   '✓ Placement details saved',
+    cvDownloaded:     '✓ CV downloaded for',
+    reserved48:       '✓ Candidate reserved for 48 hours',
+    loggedOut:        'Logged out of recruiter mode.',
+    accessGranted:    '✓ Recruiter access granted',
+    wrongCredentials: 'Incorrect credentials. Please try again.',
+    deleteConfirm:    'Delete this candidate profile?',
+    copied:           '✓ Link copied!',
   },
   ar: {
-    heroTitle:      'المرشحون <span>المتاحون</span>',
-    heroSub:        'تصفح الملفات الشخصية — انقر على البطاقة لعرض التفاصيل الكاملة والحجز',
-    searchPH:       'ابحث بالاسم أو الدور أو الجنسية…',
-    statusLabel:    'الحالة:',
-    allFilter:      'الكل',
-    availableFilter:'متاح',
-    placedFilter:   'موظف',
-    roleLabel:      'الدور:',
-    sortLabel:      'ترتيب:',
-    allRoles:       'جميع الأدوار',
-    sortNewest:     'الأحدث أولاً',
-    sortName:       'الاسم أ-ي',
-    sortExp:        'الأكثر خبرة',
-    viewBtn:        'عرض الملف',
-    personalDetails:'البيانات الشخصية',
-    workDetails:    'بيانات العمل',
-    aboutLabel:     'نبذة',
-    passportDetails:'بيانات جواز السفر',
-    reserveBtn:     '🔒 حجز هذا المرشح',
-    reservedBtn:    '🔒 محجوز حالياً',
-    downloadCV:     '⬇ تحميل السيرة الذاتية',
-    sendEnquiry:    'إرسال استفسار',
-    enquiryName:    'اسمك',
-    enquiryPhone:   'هاتفك / واتساب',
-    sendWA:         '💬 إرسال عبر واتساب',
-    ftDesc:         'توظيف متخصص للعمالة المنزلية يربط المرشحين المؤهلين بالعائلات في منطقة الخليج.',
-    ftPhone:        '+254 780 803 955',
-    ftLocation:     'نيروبي، كينيا',
-    ftServicesTitle:'خدماتنا',
-    ftS1:           'توظيف العمالة المنزلية',
-    ftS2:           'معالجة المستندات',
-    ftS3:           'مساعدة في التأشيرة',
-    ftS4:           'التدريب قبل السفر',
-    ftS5:           'الدعم بعد التوظيف',
-    ftInfoTitle:    'معلومات',
-    ftI1:           'كيف تعمل',
-    ftI2:           'تصفح المرشحين',
-    ftI3:           'المتطلبات',
-    ftI4:           'اتصل بنا',
-    ftI5:           'سياسة الخصوصية',
-    ftCopy:         '© 2026 RecGlobal. جميع الحقوق محفوظة.',
-    ftTagline:      'توظيف موثوق — كينيا · منطقة الخليج',
-    noResults:      'لا توجد نتائج',
-    noResultsSub:   'جرب مصطلح بحث مختلف.',
-    noCandidates:   'لا يوجد مرشحون متاحون',
-    noCandidatesSub:'تفقد مجدداً لاحقاً.',
-    confirmYes:     'نعم، احجز',
-    confirmNo:      'لا، عُد',
-    dob:            'تاريخ الميلاد', gender: 'الجنس', nationality: 'الجنسية',
-    education:      'التعليم', role: 'الدور', experience: 'الخبرة',
-    status:         'الحالة', skills: 'المهارات', salary: 'الراتب', contract: 'العقد',
-    passportNo:     'رقم الجواز', issueDate: 'تاريخ الإصدار', expiryDate: 'تاريخ الانتهاء',
-    issuingCountry: 'دولة الإصدار',
-    yearsExp:       'سنوات',
+    heroTitle:        'المرشحون <span>المتاحون</span>',
+    heroSub:          'تصفح الملفات الشخصية — انقر على البطاقة لعرض التفاصيل الكاملة والحجز',
+    searchPH:         'ابحث بالاسم أو الدور أو الجنسية…',
+    statusLabel:      'الحالة:',
+    allFilter:        'الكل',
+    availableFilter:  'متاح',
+    placedFilter:     'موظف',
+    roleLabel:        'الدور:',
+    sortLabel:        'ترتيب:',
+    allRoles:         'جميع الأدوار',
+    sortNewest:       'الأحدث أولاً',
+    sortName:         'الاسم أ-ي',
+    sortExp:          'الأكثر خبرة',
+    viewBtn:          'عرض الملف',
+    loginBtn:         '🔐 تسجيل الدخول',
+    logoutBtn:        '🔓 تسجيل الخروج',
+    navDirectory:     'الدليل',
+    navDashboard:     'لوحة التحكم',
+    navAddCandidate:  '+ إضافة مرشح',
+    statTotal:        'الإجمالي',
+    statAvailable:    'متاح',
+    statTravelling:   'مسافر',
+    statReserved:     'محجوز',
+    statCompleted:    'مكتمل',
+    personalDetails:  'البيانات الشخصية',
+    workDetails:      'بيانات العمل',
+    aboutLabel:       'نبذة',
+    passportDetails:  'بيانات جواز السفر',
+    reserveBtn:       'حجز هذا المرشح',
+    reservedBtn:      'محجوز حالياً',
+    downloadCV:       '⬇ تحميل السيرة الذاتية',
+    sendEnquiry:      'إرسال استفسار',
+    enquiryName:      'اسمك',
+    enquiryPhone:     'هاتفك / واتساب',
+    enquiryMsg:       'رسالة بخصوص',
+    sendWA:           '💬 إرسال عبر واتساب',
+    editProfile:      '✏️ تعديل الملف',
+    deleteProfile:    'حذف الملف',
+    processStatus:    'حالة المعالجة',
+    currentStage:     'المرحلة الحالية:',
+    placementDetails: 'تفاصيل التوظيف',
+    addPlacement:     '+ إضافة تفاصيل التوظيف',
+    savePlacement:    'حفظ تفاصيل التوظيف',
+    employerFamily:   'صاحب العمل / العائلة',
+    locationLabel:    'الموقع',
+    startDate:        'تاريخ البداية',
+    endDate:          'تاريخ الانتهاء',
+    placementNotes:   'ملاحظات',
+    reservedNotice:   'هذا المرشح محجوز حالياً',
+    holdExpires:      'ينتهي الحجز خلال',
+    holdExpiresSoon:  'ينتهي الحجز قريباً',
+    generatingPdf:    'جارٍ إنشاء PDF…',
+    roleNotSpecified: 'الدور غير محدد',
+    confirmYes:       'نعم، احجز',
+    confirmNo:        'لا، عُد',
+    confirmMsgTpl:    'سيتم إخفاء هذا الملف عن المستخدمين الآخرين لمدة 48 ساعة أثناء معالجة المستندات.',
+    loginTitle:       'وصول المسؤول',
+    loginSub:         'أدخل بيانات اعتماد المسؤول للوصول إلى بوابة إدارة RecGlobal.',
+    loginUser:        'اسم المستخدم',
+    loginPass:        'كلمة المرور',
+    loginSubmit:      'تسجيل الدخول ←',
+    addTitle:         'إضافة ملف مرشح',
+    addSubtitle:      'ارفع صورة الملف الشخصي وامسح جواز السفر — سيتم ملء الحقول تلقائياً.',
+    photoLabel:       'صورة الملف الشخصي',
+    photoSub:         'صورة كاملة أو صورة الوجه',
+    passportScan:     'مسح جواز السفر',
+    passportScanSub:  'يملأ البيانات تلقائياً',
+    scanningOCR:      'جارٍ قراءة جواز السفر — قد يستغرق ذلك بضع ثوانٍ…',
+    sectionPersonal:  'البيانات الشخصية',
+    sectionPassport:  'بيانات جواز السفر',
+    sectionWork:      'بيانات العمل',
+    sectionSalary:    'الراتب والعقد',
+    sectionNotes:     'الملاحظات والمهارات',
+    firstName:        'الاسم الأول',
+    lastName:         'اسم العائلة',
+    phoneNumber:      'رقم الهاتف',
+    homeAddress:      'العنوان',
+    passportNumber:   'رقم جواز السفر',
+    issuingCountry:   'دولة الإصدار',
+    yearsOfExp:       'سنوات الخبرة',
+    expectedSalary:   'الراتب المتوقع (ريال/شهر)',
+    skillsLangs:      'المهارات / اللغات',
+    additionalNotes:  'ملاحظات إضافية',
+    submitCandidate:  'حفظ ملف المرشح ←',
+    adminTotal:       'إجمالي المرشحين',
+    adminAvailable:   'متاح',
+    adminTravelling:  'مسافر',
+    adminProbation:   'في فترة التجربة',
+    adminCompleted:   'مكتمل',
+    adminExpiring:    'جواز سفر منتهي قريباً',
+    adminExpiringSub: 'خلال 6 أشهر',
+    adminPipeline:    'نظرة عامة على المسار',
+    adminProbTitle:   'عدادات فترة التجربة',
+    adminProbSub:     '(90 يوماً من تاريخ السفر)',
+    adminNoProbation: 'لا يوجد مرشحون في فترة التجربة حالياً.',
+    adminAllCandidates:'جميع المرشحين',
+    adminSearchPH:    'ابحث بالاسم أو الدور أو الجنسية…',
+    adminAllStages:   'جميع المراحل',
+    adminSortNewest:  'الأحدث',
+    adminSortName:    'الاسم أ-ي',
+    adminSortStage:   'حسب المرحلة',
+    adminSortExp:     'الخبرة',
+    colName:          'الاسم',
+    colRole:          'الدور',
+    colNationality:   'الجنسية',
+    colStage:         'المرحلة',
+    colExpiry:        'انتهاء الجواز',
+    colEmployer:      'صاحب العمل',
+    probDaysLeft:     'يوم متبقي',
+    probComplete:     'مكتمل ✓',
+    compareTitle:     'مقارنة المرشحين',
+    compareField:     'الحقل',
+    compareEnglish:   'الإنجليزية',
+    compareArabic:    'العربية',
+    compareBtn:       'مقارنة ←',
+    compareClear:     'مسح الكل',
+    compareMax:       'يمكنك مقارنة ما يصل إلى 3 مرشحين في وقت واحد.',
+    compareMin:       'اختر مرشحَين على الأقل للمقارنة.',
+    editTitle:        'تعديل المرشح',
+    editSave:         'حفظ التغييرات ←',
+    printClose:       '✕ إغلاق',
+    printSave:        '🖨 طباعة / حفظ PDF',
+    printGenerated:   'تم الإنشاء في',
+    printPortal:      'بوابة RecGlobal للمرشحين',
+    ftDesc:           'توظيف متخصص للعمالة المنزلية يربط المرشحين المؤهلين بالعائلات في منطقة الخليج.',
+    ftPhone:          '+254 780 803 955',
+    ftLocation:       'نيروبي، كينيا',
+    ftServicesTitle:  'خدماتنا',
+    ftS1:             'توظيف العمالة المنزلية',
+    ftS2:             'معالجة المستندات',
+    ftS3:             'مساعدة في التأشيرة',
+    ftS4:             'التدريب قبل السفر',
+    ftS5:             'الدعم بعد التوظيف',
+    ftInfoTitle:      'معلومات',
+    ftI1:             'كيف تعمل',
+    ftI2:             'تصفح المرشحين',
+    ftI3:             'المتطلبات',
+    ftI4:             'اتصل بنا',
+    ftI5:             'سياسة الخصوصية',
+    ftCopy:           '© 2026 RecGlobal. جميع الحقوق محفوظة.',
+    ftTagline:        'توظيف موثوق — كينيا · منطقة الخليج',
+    noResults:        'لا توجد نتائج',
+    noResultsSub:     'جرب مصطلح بحث مختلف.',
+    noCandidates:     'لا يوجد مرشحون متاحون',
+    noCandidatesSub:  'تفقد مجدداً لاحقاً.',
+    dob:              'تاريخ الميلاد',
+    gender:           'الجنس',
+    nationality:      'الجنسية',
+    education:        'التعليم',
+    role:             'الدور',
+    experience:       'الخبرة',
+    status:           'الحالة',
+    skills:           'المهارات',
+    salary:           'الراتب',
+    contract:         'العقد',
+    passportNo:       'رقم الجواز',
+    issueDate:        'تاريخ الإصدار',
+    expiryDate:       'تاريخ الانتهاء',
+    issuingCountry:   'دولة الإصدار',
+    yearsExp:         'سنوات',
+    perMonth:         '/شهر',
+    selectGender:     'اختر',
+    selectRole:       'اختر الدور',
+    selectEducation:  'اختر',
+    selectContract:   'اختر',
+    rolePosition:     'الدور / المنصب',
+    educationLevel:   'المستوى التعليمي',
+    contractPeriod:   'مدة العقد',
+    optFemale:        'أنثى',
+    optMale:          'ذكر',
+    optOther:         'أخرى',
+    optPrimary:       'ابتدائي',
+    optSecondary:     'ثانوي',
+    optCertificate:   'شهادة',
+    optDiploma:       'دبلوم',
+    optDegree:        'درجة علمية',
+    opt1Year:         'سنة واحدة',
+    opt2Years:        'سنتان',
+    opt3Years:        '3 سنوات',
+    optAvailable:     'متاح',
+    optPlaced:        'موظف',
+    stageNew:         'جديد',
+    stageTraining:    'تدريب',
+    stagePassport:    'جواز وشهادة حسن السيرة',
+    stageMedical:     'طبي',
+    stageVisa:        'طلب تأشيرة',
+    stageTravel:      'سفر',
+    stageCompleted:   'مكتمل',
+    ocrLoading:       'جارٍ تحميل محرك OCR…',
+    ocrScanning:      'جارٍ مسح صورة جواز السفر…',
+    ocrExtracting:    'جارٍ استخراج البيانات…',
+    profileDeleted:   'تم حذف الملف.',
+    stageUpdated:     '✓ تم تحديث المرحلة إلى:',
+    placementSaved:   '✓ تم حفظ تفاصيل التوظيف',
+    cvDownloaded:     '✓ تم تحميل السيرة الذاتية لـ',
+    reserved48:       '✓ تم حجز المرشح لمدة 48 ساعة',
+    loggedOut:        'تم تسجيل الخروج من وضع المسؤول.',
+    accessGranted:    '✓ تم منح صلاحية الوصول',
+    wrongCredentials: 'بيانات غير صحيحة. حاول مجدداً.',
+    deleteConfirm:    'هل تريد حذف ملف هذا المرشح؟',
+    copied:           '✓ تم نسخ الرابط!',
   }
 };
 
@@ -2969,43 +3338,39 @@ function setLang(lang) {
 }
 
 function applyTranslations() {
-  const ids = [
-    'ftDesc','ftPhone','ftLocation','ftServicesTitle',
-    'ftS1','ftS2','ftS3','ftS4','ftS5',
-    'ftInfoTitle','ftI1','ftI2','ftI3','ftI4','ftI5',
-    'ftCopy','ftTagline'
-  ];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = t(id);
-  });
+  // ── Footer static IDs ──
+  ['ftDesc','ftPhone','ftLocation','ftServicesTitle',
+   'ftS1','ftS2','ftS3','ftS4','ftS5',
+   'ftInfoTitle','ftI1','ftI2','ftI3','ftI4','ftI5',
+   'ftCopy','ftTagline'
+  ].forEach(id => { const el = document.getElementById(id); if (el) el.textContent = t(id); });
 
-  // Hero
+  // ── Hero ──
   const h1 = document.querySelector('.dir-header h1');
   if (h1) h1.innerHTML = t('heroTitle');
   const heroP = document.querySelector('.dir-header p');
   if (heroP) heroP.textContent = t('heroSub');
 
-  // Search placeholder
+  // ── Search placeholder ──
   const srch = document.getElementById('searchInput');
   if (srch) srch.placeholder = t('searchPH');
 
-  // Filter chips
+  // ── Filter chips ──
   const chips = document.querySelectorAll('.filter-chip');
   const chipKeys = ['allFilter','availableFilter','placedFilter'];
   chips.forEach((chip, i) => { if (chipKeys[i]) chip.textContent = t(chipKeys[i]); });
 
-  // Filter labels
+  // ── Filter labels ──
   const labels = document.querySelectorAll('.filter-label');
   if (labels[0]) labels[0].textContent = t('statusLabel');
   if (labels[1]) labels[1].textContent = t('roleLabel');
   if (labels[2]) labels[2].textContent = t('sortLabel');
 
-  // Role filter options
+  // ── Role filter ──
   const roleFilter = document.getElementById('roleFilter');
   if (roleFilter?.options[0]) roleFilter.options[0].text = t('allRoles');
 
-  // Sort options
+  // ── Sort filter ──
   const sortFilter = document.getElementById('sortFilter');
   if (sortFilter) {
     if (sortFilter.options[0]) sortFilter.options[0].text = t('sortNewest');
@@ -3013,11 +3378,183 @@ function applyTranslations() {
     if (sortFilter.options[2]) sortFilter.options[2].text = t('sortExp');
   }
 
-  // Confirm dialog buttons
+  // ── Stats bar labels ──
+  const statLabels = document.querySelectorAll('.stat-label');
+  const statKeys = ['statTotal','statAvailable','statTravelling','statReserved','statCompleted'];
+  statLabels.forEach((el, i) => { if (statKeys[i]) el.textContent = t(statKeys[i]); });
+
+  // ── Recruiter nav buttons ──
+  const navBtns = document.querySelectorAll('.recruiter-nav button');
+  if (navBtns[0]) navBtns[0].textContent = t('navDirectory');
+  if (navBtns[1]) navBtns[1].textContent = t('navDashboard');
+  if (navBtns[2]) navBtns[2].textContent = t('navAddCandidate');
+
+  // ── Header login/logout button ──
+  updateHeaderLoginBtn();
+
+  // ── Confirm dialog buttons ──
   const confirmYes = document.querySelector('.confirm-yes');
   if (confirmYes) confirmYes.textContent = t('confirmYes');
   const confirmNo = document.querySelector('.confirm-no');
   if (confirmNo) confirmNo.textContent = t('confirmNo');
+
+  // ── Login page ──
+  const loginTitle = document.querySelector('.login-wrap h2');
+  if (loginTitle) loginTitle.textContent = t('loginTitle');
+  const loginSub = document.querySelector('.login-wrap p');
+  if (loginSub) loginSub.textContent = t('loginSub');
+  const loginUser = document.getElementById('loginUser');
+  if (loginUser) loginUser.placeholder = t('loginUser');
+  const loginPass = document.getElementById('loginPass');
+  if (loginPass) loginPass.placeholder = t('loginPass');
+  const loginBtn = document.querySelector('.login-btn');
+  if (loginBtn) loginBtn.textContent = t('loginSubmit');
+
+  // ── Add candidate form ──
+  const addTitle = document.querySelector('.upload-title');
+  if (addTitle) addTitle.textContent = t('addTitle');
+  const addSub = document.querySelector('.upload-subtitle');
+  if (addSub) addSub.textContent = t('addSubtitle');
+  const submitBtn = document.querySelector('.submit-btn');
+  if (submitBtn) submitBtn.textContent = t('submitCandidate');
+
+  // ── Admin KPI labels (by ID) ──
+  const kpiIdMap = {
+    'kpiLblTotal': 'adminTotal', 'kpiLblAvailable': 'adminAvailable',
+    'kpiLblTravelling': 'adminTravelling', 'kpiLblProbation': 'adminProbation',
+    'kpiLblCompleted': 'adminCompleted', 'kpiLblExpiring': 'adminExpiring',
+    'kpiSubExpiring': 'adminExpiringSub',
+    'adminTitlePipeline': 'adminPipeline',
+    'adminTitleCandidates': 'adminAllCandidates',
+    'probationEmpty': 'adminNoProbation',
+    'thName': 'colName', 'thRole': 'colRole', 'thNationality': 'colNationality',
+    'thStage': 'colStage', 'thExpiry': 'colExpiry', 'thEmployer': 'colEmployer',
+  };
+  Object.entries(kpiIdMap).forEach(([id, key]) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = t(key);
+  });
+
+  // Probation section title with sub-text
+  const probTitleEl = document.getElementById('adminTitleProbation');
+  const probSubEl   = document.getElementById('adminSubProbation');
+  if (probTitleEl) probTitleEl.childNodes[0].textContent = t('adminProbTitle') + ' ';
+  if (probSubEl)   probSubEl.textContent = t('adminProbSub');
+
+  const adminSearch = document.getElementById('adminSearch');
+  if (adminSearch) adminSearch.placeholder = t('adminSearchPH');
+
+  const adminStageFilter = document.getElementById('adminStageFilter');
+  if (adminStageFilter?.options[0]) adminStageFilter.options[0].text = t('adminAllStages');
+
+  const adminSortFilter = document.getElementById('adminSortFilter');
+  if (adminSortFilter) {
+    if (adminSortFilter.options[0]) adminSortFilter.options[0].text = t('adminSortNewest');
+    if (adminSortFilter.options[1]) adminSortFilter.options[1].text = t('adminSortName');
+    if (adminSortFilter.options[2]) adminSortFilter.options[2].text = t('adminSortStage');
+    if (adminSortFilter.options[3]) adminSortFilter.options[3].text = t('adminSortExp');
+  }
+
+  // ── Print view buttons ──
+  const printClose = document.querySelector('.print-close-btn');
+  if (printClose) printClose.textContent = t('printClose');
+  const printBtn = document.querySelector('.print-btn');
+  if (printBtn) printBtn.textContent = t('printSave');
+
+  // ── Compare bar ──
+  const compareGo = document.querySelector('.compare-btn-go');
+  if (compareGo) compareGo.textContent = t('compareBtn');
+  const compareClear = document.querySelector('.compare-clear');
+  if (compareClear) compareClear.textContent = t('compareClear');
+
+  // ── Edit modal title ──
+  const editModalTitle = document.querySelector('.edit-modal-header h3');
+  if (editModalTitle) editModalTitle.textContent = t('editTitle');
+
+  // ── Add-candidate form labels ──
+  const formLabelMap = {
+    'firstName': 'firstName', 'lastName': 'lastName',
+    'dob': 'dob', 'nationality': 'nationality',
+    'phone': 'phoneNumber', 'address': 'homeAddress',
+    'passportNo': 'passportNumber', 'passportIssue': 'issueDate',
+    'passportExpiry': 'expiryDate', 'passportCountry': 'issuingCountry',
+    'experience': 'yearsOfExp', 'salary': 'expectedSalary',
+    'skills': 'skillsLangs', 'notes': 'additionalNotes'
+  };
+  Object.entries(formLabelMap).forEach(([inputId, tKey]) => {
+    const input = document.getElementById(inputId);
+    if (input) {
+      const label = input.closest('.form-group')?.querySelector('label');
+      if (label) {
+        // preserve AI badge if present
+        const badge = label.querySelector('.ai-badge');
+        label.textContent = t(tKey);
+        if (badge) label.appendChild(badge);
+      }
+    }
+  });
+
+  // Section dividers in add-candidate form
+  const dividers = document.querySelectorAll('.section-divider span');
+  const dividerKeys = ['sectionPersonal','sectionPassport','sectionWork'];
+  dividers.forEach((el, i) => { if (dividerKeys[i]) el.textContent = t(dividerKeys[i]); });
+
+  // Upload boxes
+  const profilePhotoText = document.querySelector('#profilePhotoContent .drop-text');
+  if (profilePhotoText) profilePhotoText.textContent = t('photoLabel');
+  const profilePhotoSub = document.querySelector('#profilePhotoContent .drop-sub');
+  if (profilePhotoSub) profilePhotoSub.textContent = t('photoSub');
+  const passportScanText = document.querySelector('#dropContent .drop-text');
+  if (passportScanText) passportScanText.textContent = t('passportScan');
+  const passportScanSub = document.querySelector('#dropContent .drop-sub');
+  if (passportScanSub) passportScanSub.textContent = t('passportScanSub');
+
+  // OCR loading text
+  const aiLoadingSpan = document.querySelector('#aiLoading span');
+  if (aiLoadingSpan) aiLoadingSpan.textContent = t('scanningOCR');
+
+  // ── Add-candidate form: remaining labels ──
+  const genderLabel = document.querySelector('label[for="gender"], #gender')?.closest('.form-group')?.querySelector('label');
+  if (genderLabel) genderLabel.textContent = t('gender');
+  const roleLabel2 = document.querySelector('#role')?.closest('.form-group')?.querySelector('label');
+  if (roleLabel2) roleLabel2.textContent = t('rolePosition');
+  const educationLabel = document.querySelector('#education')?.closest('.form-group')?.querySelector('label');
+  if (educationLabel) educationLabel.textContent = t('educationLevel');
+  const contractLabel = document.querySelector('#contractPeriod')?.closest('.form-group')?.querySelector('label');
+  if (contractLabel) contractLabel.textContent = t('contractPeriod');
+
+  // ── Gender select options ──
+  const genderSel = document.getElementById('gender');
+  if (genderSel && genderSel.options.length >= 4) {
+    genderSel.options[0].text = t('selectGender');
+    genderSel.options[1].text = t('optFemale');
+    genderSel.options[2].text = t('optMale');
+    genderSel.options[3].text = t('optOther');
+  }
+
+  // ── Education select options ──
+  const eduSel = document.getElementById('education');
+  if (eduSel && eduSel.options.length >= 6) {
+    eduSel.options[0].text = t('selectEducation');
+    eduSel.options[1].text = t('optPrimary');
+    eduSel.options[2].text = t('optSecondary');
+    eduSel.options[3].text = t('optCertificate');
+    eduSel.options[4].text = t('optDiploma');
+    eduSel.options[5].text = t('optDegree');
+  }
+
+  // ── Contract period select options ──
+  const contractSel = document.getElementById('contractPeriod');
+  if (contractSel && contractSel.options.length >= 4) {
+    contractSel.options[0].text = t('selectContract');
+    contractSel.options[1].text = t('opt1Year');
+    contractSel.options[2].text = t('opt2Years');
+    contractSel.options[3].text = t('opt3Years');
+  }
+
+  // ── Role select first option ──
+  const roleSel = document.getElementById('role');
+  if (roleSel && roleSel.options[0]) roleSel.options[0].text = t('selectRole');
 }
 
 function showToast(msg) {
@@ -3037,6 +3574,9 @@ if (localStorage.getItem('twRecruiterSession') === '1') {
   if (dirBtn) dirBtn.classList.add('active');
   updateHeaderLoginBtn();
 }
+
+// Restore saved language (applies all translations on load)
+setLang(currentLang);
 
 // Always land on directory and clear add-candidate form
 resetForm();
@@ -3098,4 +3638,10 @@ renderDirectory();
     </div>
   </div>
   <div class="footer-bottom">
-    <p id="ftCopy">© 2026 RecGlobal. All rights reserved. 
+    <p id="ftCopy">© 2026 RecGlobal. All rights reserved.</p>
+    <p class="footer-tagline" id="ftTagline">Trusted Labour Recruitment — Kenya · Gulf Region</p>
+  </div>
+</footer>
+
+</body>
+</html>
