@@ -562,20 +562,16 @@
      RESPONSIVE — SMALL TABLET  (≤ 700px)
   ════════════════════════════════════════ */
   @media (max-width: 700px) {
-    /* Header: logo left, lang+login right, nav full-width below */
+    /* Header wraps recruiter nav */
     header {
       height: auto;
       min-height: 56px;
       flex-wrap: wrap;
       padding: 0.5rem 1rem;
       gap: 0.4rem;
-      align-items: center;
     }
-    .logo { order: 1; flex: 1; }
-    .lang-switcher { order: 2; margin-left: 0; }
-    .header-login-btn { order: 3; margin-left: 0; }
     .recruiter-nav {
-      order: 4;
+      order: 3;
       width: 100%;
       justify-content: center;
       border-top: 1px solid rgba(201,168,76,0.15);
@@ -583,6 +579,7 @@
       padding-bottom: 0.2rem;
     }
     .recruiter-nav button { font-size: 0.78rem; padding: 0.4rem 0.7rem; }
+    .lang-switcher { margin-left: 0; }
 
     /* Hero */
     .dir-header h1 { font-size: 1.5rem; }
@@ -987,19 +984,196 @@
   .admin-search {
     flex:1; min-width:160px; padding:0.5rem 0.85rem;
     border:1.5px solid #e0e0e0; border-radius:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.85rem; outline:none;
+    font-family:inherit; font-size:0.85rem; outline:none;
     transition:border 0.2s;
   }
   .admin-search:focus { border-color:var(--gold); }
   .admin-filter-select {
     padding:0.5rem 0.75rem; border:1.5px solid #e0e0e0; border-radius:8px;
-    font-family:'DM Sans',sans-serif; font-size:0.8rem; outline:none;
+    font-family:inherit; font-size:0.8rem; outline:none;
     background:#fff; color:var(--text); cursor:pointer;
   }
   .admin-filter-select:focus { border-color:var(--gold); }
 
 
-  /* ── LANGUAGE SWITCHER ── */
+  /* ── DARK MODE ── */
+  body.dark-mode {
+    --cream-soft: #0f1923;
+    --text: #e8edf2;
+    --muted: #8899aa;
+    background: #0f1923;
+    color: #e8edf2;
+  }
+  body.dark-mode .candidate-card { background: #162236; border-color: rgba(255,255,255,0.07); }
+  body.dark-mode .card-body { background: #162236; }
+  body.dark-mode .filter-bar { background: #0d1b2a; border-color: rgba(201,168,76,0.15); }
+  body.dark-mode .filter-select, body.dark-mode input[type="text"],
+  body.dark-mode input[type="date"], body.dark-mode input[type="number"],
+  body.dark-mode select, body.dark-mode textarea {
+    background: #1e3050; border-color: #2a4060; color: #e8edf2;
+  }
+  body.dark-mode .modal { background: #162236; }
+  body.dark-mode .modal-body { background: #162236; }
+  body.dark-mode .modal-field span { color: #e8edf2; }
+  body.dark-mode .modal-section-title { border-color: #2a4060; }
+  body.dark-mode .card-footer { border-color: #2a4060; }
+  body.dark-mode .upload-wrapper, body.dark-mode .login-wrap { background: #162236; }
+  body.dark-mode .admin-dashboard { background: #0d1b2a; }
+  body.dark-mode .kpi-card { background: #162236; }
+  body.dark-mode .funnel-row { background: #162236; }
+  body.dark-mode .admin-table-wrap { background: #162236; }
+  body.dark-mode .admin-table tbody tr:hover { background: #1e3050; }
+  body.dark-mode .admin-table td { color: #e8edf2; }
+  body.dark-mode .admin-toolbar { background: #162236; border-color: #2a4060; }
+  body.dark-mode .search-bar input { background: rgba(22,34,54,0.95); color: #e8edf2; border-color: rgba(201,168,76,0.4); }
+  body.dark-mode .search-bar input::placeholder { color: #5a7090; }
+  body.dark-mode .confirm-box { background: #162236; }
+  body.dark-mode .confirm-title { color: #e8edf2; }
+  body.dark-mode .reserve-btn { background: #1a2a3a; }
+  body.dark-mode .probation-card { background: #162236; }
+  body.dark-mode .edit-modal { background: #162236; }
+  body.dark-mode .edit-modal-body input,
+  body.dark-mode .edit-modal-body select,
+  body.dark-mode .edit-modal-body textarea { background: #1e3050; border-color: #2a4060; color: #e8edf2; }
+  body.dark-mode .view-btn { color: var(--gold-light); border-color: var(--gold); }
+  body.dark-mode .view-btn:hover { background: var(--gold); color: var(--navy); }
+  body.dark-mode .compare-modal { background: #162236; }
+  body.dark-mode .compare-table td, body.dark-mode .compare-table th { border-color: #2a4060; }
+  body.dark-mode .compare-table td:first-child { background: #1e3050; }
+  body.dark-mode .placement-section { background: #1a2840; border-color: #2a4060; }
+  body.dark-mode .print-card { background: #162236; }
+  body.dark-mode .print-body { background: #162236; }
+  body.dark-mode .print-actions { border-color: #2a4060; }
+  body.dark-mode .print-close-btn { background: #1e3050; border-color: #2a4060; color: #e8edf2; }
+  body.dark-mode .print-field span { color: #e8edf2; }
+  body.dark-mode .enquiry-inner input,
+  body.dark-mode .enquiry-inner textarea { background: #1e3050; border-color: #2a4060; color: #e8edf2; }
+  body.dark-mode .site-footer { background: #07111b; }
+  body.dark-mode .section-divider::before,
+  body.dark-mode .section-divider::after { background: #2a4060; }
+
+  /* ── LIST VIEW ── */
+  .candidates-grid.list-view {
+    grid-template-columns: 1fr;
+    max-width: 860px;
+  }
+  .candidates-grid.list-view .candidate-card {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    grid-template-rows: auto;
+    align-items: center;
+  }
+  .candidates-grid.list-view .card-photo {
+    height: 80px; width: 80px; border-radius: 0;
+    grid-row: 1;
+  }
+  .candidates-grid.list-view .card-body {
+    padding: 0.75rem 1rem;
+    grid-row: 1;
+  }
+  .candidates-grid.list-view .card-meta { flex-direction: row; flex-wrap: wrap; gap: 0.5rem; }
+  .candidates-grid.list-view .card-footer {
+    padding: 0.75rem 1rem;
+    border-top: none;
+    border-left: 1px solid #f0f0f0;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.4rem;
+    grid-row: 1;
+  }
+  .candidates-grid.list-view .compare-checkbox { top: 0.5rem; left: 0.5rem; }
+  body.dark-mode .candidates-grid.list-view .card-footer { border-color: #2a4060; }
+
+  /* ── VIEW TOGGLE ── */
+  .view-toggle {
+    display: flex; gap: 0.25rem; align-items: center; margin-left: 0.5rem;
+  }
+  .view-toggle-btn {
+    background: none; border: 1.5px solid rgba(201,168,76,0.3);
+    color: var(--muted); width: 32px; height: 28px;
+    border-radius: 6px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: all 0.2s;
+    font-size: 0.85rem;
+  }
+  .view-toggle-btn.active { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .view-toggle-btn:hover:not(.active) { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── DARK MODE TOGGLE ── */
+  .dark-toggle-btn {
+    background: none; border: 1.5px solid rgba(201,168,76,0.3);
+    color: var(--muted); font-size: 0.85rem; width: 32px; height: 28px;
+    border-radius: 6px; cursor: pointer; display: flex;
+    align-items: center; justify-content: center; transition: all 0.2s; margin-left: 0.25rem;
+  }
+  .dark-toggle-btn:hover { border-color: var(--gold); color: var(--gold-light); }
+
+  /* ── FAVORITES ── */
+  .fav-btn {
+    position: absolute; top: 0.5rem; right: 0.5rem;
+    background: rgba(255,255,255,0.9); border: none;
+    width: 28px; height: 28px; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem; transition: all 0.18s; z-index: 2;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+  }
+  .fav-btn:hover { transform: scale(1.15); }
+  .fav-btn.active { background: #fff0f0; }
+  body.dark-mode .fav-btn { background: rgba(22,34,54,0.9); }
+
+  /* ── AGE BADGE ── */
+  .age-badge {
+    font-size: 0.68rem; color: var(--muted); font-weight: 500;
+    background: var(--cream-soft); border: 1px solid #e8e8e8;
+    padding: 0.1rem 0.45rem; border-radius: 10px; display: inline-block;
+  }
+  body.dark-mode .age-badge { background: #1e3050; border-color: #2a4060; }
+
+  /* ── RESULT COUNT ── */
+  .result-count {
+    font-size: 0.75rem; color: var(--muted); font-weight: 600;
+    margin-left: auto; white-space: nowrap; display: flex; align-items: center; gap: 0.3rem;
+  }
+  .result-count-num { color: var(--gold); font-weight: 700; }
+
+  /* ── SALARY FILTER ── */
+  .salary-filter-wrap {
+    display: flex; align-items: center; gap: 0.4rem; flex-wrap: nowrap;
+  }
+  .salary-range-input {
+    width: 70px; padding: 0.38rem 0.5rem; border: 1.5px solid #e0e0e0;
+    border-radius: 6px; font-family: 'DM Sans', sans-serif; font-size: 0.78rem;
+    color: var(--text); background: #fff; outline: none; transition: border 0.2s;
+  }
+  .salary-range-input:focus { border-color: var(--gold); }
+  body.dark-mode .salary-range-input { background: #1e3050; border-color: #2a4060; color: #e8edf2; }
+
+  /* ── BACK TO TOP ── */
+  .back-to-top {
+    position: fixed; bottom: 5.5rem; right: 1.5rem;
+    background: var(--navy); color: var(--gold-light);
+    border: 1.5px solid var(--gold); border-radius: 50%;
+    width: 40px; height: 40px; font-size: 1.1rem;
+    display: none; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 90; transition: all 0.2s;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .back-to-top.visible { display: flex; }
+  .back-to-top:hover { background: var(--navy-light); transform: translateY(-2px); }
+  body.rtl .back-to-top { right: auto; left: 1.5rem; }
+
+  /* ── CLEAR FILTERS BUTTON ── */
+  .clear-filters-btn {
+    font-size: 0.72rem; color: var(--danger); font-weight: 600;
+    background: none; border: 1px solid rgba(231,76,60,0.3);
+    padding: 0.25rem 0.6rem; border-radius: 20px;
+    cursor: pointer; white-space: nowrap; transition: all 0.2s;
+    display: none;
+  }
+  .clear-filters-btn.visible { display: inline-flex; align-items: center; gap: 0.25rem; }
+  .clear-filters-btn:hover { background: rgba(231,76,60,0.08); border-color: var(--danger); }
+
+  /* ── PASSPORT EXPIRY WARNING on card (recruiter) ── */
+  .expiry-warn { color: #ef4444; font-size: 0.68rem; font-weight: 700; }
   .lang-switcher {
     display: flex; gap: 0.25rem; align-items: center; margin-left: auto;
   }
@@ -1030,8 +1204,40 @@
   body.rtl .logo { font-family: 'Cairo', sans-serif; }
   body.rtl .dir-header h1 { font-family: 'Cairo', sans-serif; }
   body.rtl .card-name { font-family: 'Cairo', sans-serif; }
+  body.rtl .card-role { font-family: 'Cairo', sans-serif; }
+  body.rtl .card-meta-item { font-family: 'Cairo', sans-serif; }
+  body.rtl .badge { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-name { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-role { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-field label { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-field span { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-section-title { font-family: 'Cairo', sans-serif; }
+  body.rtl .filter-label { font-family: 'Cairo', sans-serif; }
+  body.rtl .filter-chip { font-family: 'Cairo', sans-serif; }
+  body.rtl .filter-select { font-family: 'Cairo', sans-serif; }
+  body.rtl .view-btn { font-family: 'Cairo', sans-serif; }
+  body.rtl .reserve-btn { font-family: 'Cairo', sans-serif; }
+  body.rtl .download-btn { font-family: 'Cairo', sans-serif; }
+  body.rtl .upload-title { font-family: 'Cairo', sans-serif; }
+  body.rtl .upload-subtitle { font-family: 'Cairo', sans-serif; }
+  body.rtl label { font-family: 'Cairo', sans-serif; }
+  body.rtl input, body.rtl select, body.rtl textarea { font-family: 'Cairo', sans-serif; }
+  body.rtl .kpi-label { font-family: 'Cairo', sans-serif; }
+  body.rtl .admin-section-title { font-family: 'Cairo', sans-serif; }
+  body.rtl .funnel-stage { font-family: 'Cairo', sans-serif; }
+  body.rtl .toast { font-family: 'Cairo', sans-serif; }
+  body.rtl .confirm-title { font-family: 'Cairo', sans-serif; }
+  body.rtl .confirm-msg { font-family: 'Cairo', sans-serif; }
+  body.rtl .confirm-yes, body.rtl .confirm-no { font-family: 'Cairo', sans-serif; }
+  body.rtl .stat-label { font-family: 'Cairo', sans-serif; }
+  body.rtl .footer-col ul li { font-family: 'Cairo', sans-serif; }
+  body.rtl .footer-brand > p { font-family: 'Cairo', sans-serif; }
+  body.rtl .result-count { font-family: 'Cairo', sans-serif; }
+  body.rtl .age-badge { font-family: 'Cairo', sans-serif; }
+  body.rtl .salary-range-input { font-family: 'Cairo', sans-serif; direction: ltr; text-align: right; }
+
   body.rtl .search-bar svg { left: auto; right: 1rem; }
-  body.rtl .search-bar input { padding: 0.75rem 2.8rem 0.75rem 1rem; }
+  body.rtl .search-bar input { padding: 0.75rem 2.8rem 0.75rem 1rem; font-family: 'Cairo', sans-serif; }
   body.rtl .filter-bar { direction: rtl; }
   body.rtl .modal-top { flex-direction: row-reverse; }
   body.rtl .modal-close { right: auto; left: 1rem; }
@@ -1039,6 +1245,29 @@
   body.rtl .recruiter-nav { flex-direction: row-reverse; }
   body.rtl .lang-switcher { margin-left: 0; margin-right: auto; }
   body.rtl header { flex-direction: row-reverse; }
+  body.rtl .view-toggle { order: -1; }
+  body.rtl .dark-toggle-btn { margin-left: 0; margin-right: 0.25rem; }
+  body.rtl .fav-btn { right: auto; left: 0.5rem; }
+  body.rtl .compare-checkbox { left: auto; right: 0.5rem; }
+  body.rtl .card-meta { direction: rtl; }
+  body.rtl .modal-fields { direction: rtl; }
+  body.rtl .modal-body { direction: rtl; }
+  body.rtl .print-header { flex-direction: row-reverse; }
+  body.rtl .print-actions { flex-direction: row-reverse; }
+  body.rtl .print-body { direction: rtl; font-family: 'Cairo', sans-serif; }
+  body.rtl .print-field label { font-family: 'Cairo', sans-serif; text-align: right; display: block; }
+  body.rtl .print-field span { font-family: 'Cairo', sans-serif; }
+  body.rtl .print-section-title { font-family: 'Cairo', sans-serif; text-align: right; }
+  body.rtl .admin-table thead th { text-align: right; }
+  body.rtl .admin-table td { text-align: right; }
+  body.rtl .compare-bar { flex-direction: row-reverse; }
+  body.rtl .compare-modal-header { flex-direction: row-reverse; }
+  body.rtl .probation-card { direction: rtl; }
+  body.rtl .prob-countdown { text-align: left; }
+  body.rtl .placement-section { direction: rtl; }
+  body.rtl .enquiry-section { direction: rtl; }
+  body.rtl .stats-bar { direction: rtl; }
+  body.rtl .section-divider span { font-family: 'Cairo', sans-serif; }
 
   /* ══════════════════════════════════════════
      FOOTER
@@ -1172,6 +1401,11 @@
     <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
     <button class="lang-btn" id="btnAR" onclick="setLang('ar')">عر</button>
   </div>
+  <div class="view-toggle" id="viewToggleWrap" title="Toggle view">
+    <button class="view-toggle-btn active" id="btnGridView" onclick="setViewMode('grid')" title="Grid view">⊞</button>
+    <button class="view-toggle-btn" id="btnListView" onclick="setViewMode('list')" title="List view">☰</button>
+  </div>
+  <button class="dark-toggle-btn" id="darkToggleBtn" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
   <button class="header-login-btn" id="headerLoginBtn" onclick="handleHeaderLogin()">🔐 Login</button>
 </header>
 
@@ -1217,12 +1451,30 @@
       <option>General Helper</option>
     </select>
     <div class="filter-sep"></div>
+    <span class="filter-label" id="lblNationality">Nationality:</span>
+    <select class="filter-select" id="nationalityFilter" onchange="renderDirectory()">
+      <option value="">All</option>
+    </select>
+    <div class="filter-sep"></div>
+    <span class="filter-label" id="lblSalary">Salary:</span>
+    <div class="salary-filter-wrap">
+      <input type="number" class="salary-range-input" id="salaryMin" placeholder="Min" min="0" oninput="renderDirectory()">
+      <span style="color:var(--muted);font-size:0.78rem">–</span>
+      <input type="number" class="salary-range-input" id="salaryMax" placeholder="Max" min="0" oninput="renderDirectory()">
+    </div>
+    <div class="filter-sep"></div>
     <span class="filter-label">Sort:</span>
     <select class="filter-select" id="sortFilter" onchange="renderDirectory()">
       <option value="newest">Newest first</option>
       <option value="name">Name A–Z</option>
       <option value="exp">Most experienced</option>
+      <option value="salary_asc">Salary ↑</option>
+      <option value="salary_desc">Salary ↓</option>
     </select>
+    <div class="filter-sep"></div>
+    <button class="filter-chip" id="favFilterBtn" onclick="toggleFavFilter(this)" style="display:flex;align-items:center;gap:0.3rem">❤️ <span id="favFilterLabel">Shortlist</span></button>
+    <button class="clear-filters-btn" id="clearFiltersBtn" onclick="clearAllFilters()">✕ <span id="clearFiltersLabel">Clear</span></button>
+    <span class="result-count" id="resultCount"><span class="result-count-num" id="resultCountNum">0</span> <span id="resultCountLabel">candidates</span></span>
   </div>
 
   <div class="candidates-grid" id="candidatesGrid"></div>
@@ -1253,7 +1505,7 @@
 
     <!-- Probation Countdown -->
     <div class="probation-section">
-      <div class="admin-section-title" id="adminTitleProbation" style="padding:0 0 0.85rem">Probation Countdowns <span id="adminSubProbation" style="font-size:0.72rem;font-weight:400;color:var(--muted);font-family:'DM Sans',sans-serif">(90-day from travel date)</span></div>
+      <div class="admin-section-title" id="adminTitleProbation" style="padding:0 0 0.85rem">Probation Countdowns <span id="adminSubProbation" style="font-size:0.72rem;font-weight:400;color:var(--muted);font-family:inherit">(90-day from travel date)</span></div>
       <div class="probation-cards" id="probationCards">
         <div style="color:var(--muted);font-size:0.85rem;padding:0.5rem 0" id="probationEmpty">No candidates currently on probation.</div>
       </div>
@@ -1477,6 +1729,55 @@ let pendingReserveId = null;
 let isRecruiter = false;
 let compareList = []; // ids being compared
 let activeStatusFilter = 'all';
+let viewMode = localStorage.getItem('twViewMode') || 'grid';
+let favFilter = false;
+
+// ── FAVORITES ──
+function getFavs() { return JSON.parse(localStorage.getItem('twFavs') || '[]'); }
+function saveFavs(f) { localStorage.setItem('twFavs', JSON.stringify(f)); }
+function isFav(id) { return getFavs().includes(id); }
+function toggleFav(id) {
+  let f = getFavs();
+  if (f.includes(id)) { f = f.filter(x => x !== id); }
+  else { f.push(id); }
+  saveFavs(f);
+  renderDirectory();
+}
+function toggleFavFilter(btn) {
+  favFilter = !favFilter;
+  btn.classList.toggle('active', favFilter);
+  renderDirectory();
+}
+
+// ── VIEW MODE ──
+function setViewMode(mode) {
+  viewMode = mode;
+  localStorage.setItem('twViewMode', mode);
+  const grid = document.getElementById('candidatesGrid');
+  if (mode === 'list') { grid.classList.add('list-view'); }
+  else { grid.classList.remove('list-view'); }
+  document.getElementById('btnGridView').classList.toggle('active', mode === 'grid');
+  document.getElementById('btnListView').classList.toggle('active', mode === 'list');
+}
+
+// ── DARK MODE ──
+function toggleDarkMode() {
+  const isDark = document.body.classList.toggle('dark-mode');
+  localStorage.setItem('twDarkMode', isDark ? '1' : '0');
+  document.getElementById('darkToggleBtn').textContent = isDark ? '☀️' : '🌙';
+}
+
+// ── AGE HELPER ──
+function calcAge(dob) {
+  if (!dob) return null;
+  const b = new Date(dob);
+  if (isNaN(b)) return null;
+  const today = new Date();
+  let age = today.getFullYear() - b.getFullYear();
+  const m = today.getMonth() - b.getMonth();
+  if (m < 0 || (m === 0 && today.getDate() < b.getDate())) age--;
+  return age > 0 && age < 100 ? age : null;
+}
 
 // ── RESERVATION UTILS ──
 const RESERVE_MS = 48 * 60 * 60 * 1000; // 48 hours
@@ -1595,12 +1896,25 @@ function setStatusFilter(val, btn) {
   renderDirectory();
 }
 
+// ── POPULATE NATIONALITY FILTER ──
+function populateNationalityFilter() {
+  const sel = document.getElementById('nationalityFilter');
+  if (!sel) return;
+  const nats = [...new Set(candidates.map(c => c.nationality).filter(Boolean))].sort();
+  const currentVal = sel.value;
+  sel.innerHTML = `<option value="">${t('allNats')}</option>` + nats.map(n => `<option value="${n}"${n===currentVal?' selected':''}>${n}</option>`).join('');
+}
+
 // ── RENDER DIRECTORY ──
 function renderDirectory() {
   const grid = document.getElementById('candidatesGrid');
   const query = (document.getElementById('searchInput')?.value || '').toLowerCase();
   const roleFilter = document.getElementById('roleFilter')?.value || '';
+  const natFilter = document.getElementById('nationalityFilter')?.value || '';
+  const salMin = parseInt(document.getElementById('salaryMin')?.value) || 0;
+  const salMax = parseInt(document.getElementById('salaryMax')?.value) || Infinity;
   const sortBy = document.getElementById('sortFilter')?.value || 'newest';
+  const favs = getFavs();
 
   // Expire old reservations first
   candidates.forEach(c => isReserved(c.id));
@@ -1608,15 +1922,27 @@ function renderDirectory() {
   let visible = candidates.filter(c => {
     const matchesQuery = `${c.firstName} ${c.lastName} ${c.role} ${c.nationality} ${c.skills}`.toLowerCase().includes(query);
     const matchesRole = !roleFilter || c.role === roleFilter;
+    const matchesNat  = !natFilter  || c.nationality === natFilter;
     const matchesStatus = activeStatusFilter === 'all' || c.status === activeStatusFilter;
+    const sal = parseInt(c.salary) || 0;
+    const matchesSal = (!salMin || sal >= salMin) && (salMax === Infinity || !document.getElementById('salaryMax')?.value || sal <= salMax);
     const reserved = isReserved(c.id);
-    return matchesQuery && matchesRole && matchesStatus && (isRecruiter || !reserved);
+    const matchesFav = !favFilter || favs.includes(c.id);
+    return matchesQuery && matchesRole && matchesNat && matchesStatus && matchesSal && matchesFav && (isRecruiter || !reserved);
   });
 
   // Sort
   if (sortBy === 'name') visible.sort((a,b) => a.firstName.localeCompare(b.firstName));
   else if (sortBy === 'exp') visible.sort((a,b) => (parseInt(b.experience)||0) - (parseInt(a.experience)||0));
+  else if (sortBy === 'salary_asc') visible.sort((a,b) => (parseInt(a.salary)||0) - (parseInt(b.salary)||0));
+  else if (sortBy === 'salary_desc') visible.sort((a,b) => (parseInt(b.salary)||0) - (parseInt(a.salary)||0));
   // newest: already in insertion order (id = Date.now)
+
+  // Update result count
+  const countEl = document.getElementById('resultCountNum');
+  const countLblEl = document.getElementById('resultCountLabel');
+  if (countEl) countEl.textContent = visible.length;
+  if (countLblEl) countLblEl.textContent = visible.length === 1 ? t('candidate1') : t('candidatesN');
 
   // Stats (recruiter only)
   if (isRecruiter) {
@@ -1627,8 +1953,14 @@ function renderDirectory() {
     document.getElementById('statCompleted').textContent = candidates.filter(c => getProcessStage(c) === 'Completed').length;
   }
 
+  // Repopulate nationality filter to reflect current data
+  populateNationalityFilter();
+
+  // Show/hide clear filters button
+  updateClearFiltersVisibility();
+
   if (visible.length === 0) {
-    grid.innerHTML = `<div class="empty-state"><div class="icon">${query ? '🔍' : '👤'}</div><h3>${query ? t('noResults') : t('noCandidates')}</h3><p>${query ? t('noResultsSub') : t('noCandidatesSub')}</p></div>`;
+    grid.innerHTML = `<div class="empty-state"><div class="icon">${query||favFilter ? '🔍' : '👤'}</div><h3>${(query||favFilter) ? t('noResults') : t('noCandidates')}</h3><p>${(query||favFilter) ? t('noResultsSub') : t('noCandidatesSub')}</p></div>`;
     return;
   }
 
@@ -1636,19 +1968,22 @@ function renderDirectory() {
     const reserved = isReserved(c.id);
     const timeLeft = reserved ? getReserveTimeLeft(c.id) : null;
     const badgeClass = reserved ? 'badge-reserved' : (c.status === 'Available' ? 'badge-available' : 'badge-placed');
-    const badgeText = reserved ? `🔒 ${t('reservedBtn')}${timeLeft ? ' · ' + timeLeft : ''}` : tv(c.status);
+    const badgeText = reserved ? `🔒 ${t('statReserved')}${timeLeft ? ' · ' + timeLeft : ''}` : (c.status === 'Available' ? t('optAvailable') : t('optPlaced'));
     const inCompare = compareList.includes(c.id);
+    const faved = favs.includes(c.id);
+    const age = calcAge(c.dob);
     return `
     <div class="candidate-card" onclick="openModal(${c.id})">
       <div class="compare-checkbox ${inCompare?'checked':''}" title="Add to compare" onclick="event.stopPropagation();toggleCompare(${c.id})">${inCompare?'✓':''}</div>
+      <button class="fav-btn ${faved?'active':''}" title="${t('favBtn')}" onclick="event.stopPropagation();toggleFav(${c.id})">${faved?'❤️':'🤍'}</button>
       <div class="card-photo">${c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤'}</div>
       <div class="card-body">
-        <div class="card-name">${c.firstName} ${c.lastName}</div>
+        <div class="card-name">${c.firstName} ${c.lastName}${age ? ` <span class="age-badge">${age}</span>` : ''}</div>
         <div class="card-role">${c.role || t('roleNotSpecified')}</div>
         <div class="card-meta">
           ${c.nationality ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${c.nationality}</div>` : ''}
-          ${c.experience ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg><span dir="ltr">${c.experience} ${t('yearsExp')}</span></div>` : ''}
-          ${c.salary ? `<div class="card-meta-item">💰 <span dir="ltr">SAR ${c.salary}${t('perMonth')}</span></div>` : ''}
+          ${c.experience ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>${c.experience} ${t('yearsExp')}</div>` : ''}
+          ${c.salary ? `<div class="card-meta-item">💰 SAR ${c.salary}${t('perMonth')}</div>` : ''}
           ${isRecruiter ? stageBadgeHtml(getProcessStage(c)) : ''}
         </div>
       </div>
@@ -1687,27 +2022,30 @@ function openModal(id) {
     : `<button class="reserve-btn" onclick="askReserve(${id})">🔒 ${t('reserveBtn')}</button>`;
 
   const editBtn = isRecruiter
-    ? `<button onclick="openEditModal(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid var(--gold);color:#856404;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('editProfile')}</button>`
+    ? `<button onclick="openEditModal(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid var(--gold);color:#856404;border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('editProfile')}</button>`
     : '';
 
   const deleteBtn = isRecruiter
-    ? `<button onclick="deleteCandidate(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #fecaca;color:var(--danger);border-radius:8px;font-family:'DM Sans',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('deleteProfile')}</button>`
+    ? `<button onclick="deleteCandidate(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #fecaca;color:var(--danger);border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;margin-top:0.25rem;">${t('deleteProfile')}</button>`
     : '';
 
 
+
+  const age = calcAge(c.dob);
+  const ageStr = age ? ` (${age} ${t('yearsOld')})` : '';
 
   document.getElementById('modalBody').innerHTML = `
     ${reservedBanner}
     <div class="modal-section">
       <div class="modal-section-title">${t('personalDetails')}</div>
-      <div class="modal-fields">${row(t('dob'),c.dob)}${row(t('gender'),tv(c.gender))}${row(t('nationality'),c.nationality)}${row(t('education'),tv(c.education))}</div>
+      <div class="modal-fields">${row(t('dob'),c.dob ? c.dob + ageStr : '')}${row(t('gender'),c.gender)}${row(t('nationality'),c.nationality)}${row(t('education'),c.education)}</div>
     </div>
     <div class="modal-section">
       <div class="modal-section-title">${t('workDetails')}</div>
       <div class="modal-fields">
-        ${row(t('role'),c.role)}${row(t('experience'),c.experience?`<span dir="ltr">${c.experience} ${t('yearsExp')}</span>`:'')}${row(t('status'),tv(c.status))}${row(t('skills'),c.skills)}
-        ${c.salary ? row(t('salary'), `<span dir="ltr">SAR ${c.salary}${t('perMonth')}</span>`) : ''}
-        ${c.contractPeriod ? row(t('contract'), tv(c.contractPeriod)) : ''}
+        ${row(t('role'),c.role)}${row(t('experience'),c.experience?`<span dir="ltr">${c.experience} ${t('yearsExp')}</span>`:'')}${row(t('status'),c.status)}${row(t('skills'),c.skills)}
+        ${c.salary ? row(t('salary'), `<span dir="ltr">SAR ${c.salary}/month</span>`) : ''}
+        ${c.contractPeriod ? row(t('contract'), c.contractPeriod) : ''}
       </div>
     </div>
     ${c.notes ? `<div class="modal-section"><div class="modal-section-title">${t('aboutLabel')}</div><p style="font-size:0.875rem;color:var(--text);line-height:1.6">${c.notes}</p></div>` : ''}
@@ -1718,7 +2056,7 @@ function openModal(id) {
       <div class="status-pipeline">
         ${renderProcessBar(getProcessStage(c))}
         <select class="pipeline-select" onchange="saveProcessStage(${c.id}, this.value)">
-          ${PROCESS_STAGES.map(s => '<option value="' + s + '" ' + (getProcessStage(c)===s?'selected':'') + '>' + tv(s) + '</option>').join('')}
+          ${PROCESS_STAGES.map(s => '<option value="' + s + '" ' + (getProcessStage(c)===s?'selected':'') + '>' + s + '</option>').join('')}
         </select>
       </div>
     </div>` : ''}
@@ -1734,15 +2072,18 @@ function openModal(id) {
       </div>
       <div class="placement-field" style="margin-top:0.5rem"><label>${t('placementNotes')}</label><input type="text" id="pl_notes_${c.id}" value="${c.placementNotes||''}" placeholder="Any placement notes…"></div>
       <button class="placement-save-btn" onclick="savePlacement(${c.id})">${t('savePlacement')}</button>
-    </div>` : isRecruiter ? `<div style="margin-bottom:0.75rem"><button onclick="saveProcessStage(${c.id},'Travel');openModal(${c.id})" style="width:100%;padding:0.55rem;background:#fff;border:1.5px solid #e8eaf6;color:var(--muted);border-radius:8px;font-size:0.8rem;font-family:'DM Sans',sans-serif;cursor:pointer">${t('addPlacement')}</button></div>` : ''}
+    </div>` : isRecruiter ? `<div style="margin-bottom:0.75rem"><button onclick="saveProcessStage(${c.id},'Travel');openModal(${c.id})" style="width:100%;padding:0.55rem;background:#fff;border:1.5px solid #e8eaf6;color:var(--muted);border-radius:8px;font-size:0.8rem;font-family:inherit;cursor:pointer">${t('addPlacement')}</button></div>` : ''}
 
     <div style="display:flex;flex-direction:column;gap:0.5rem;margin-top:0.5rem;">
       ${isRecruiter ? `
         ${editBtn}
+        <button onclick="openPrintView(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #e0e0e0;color:var(--text);border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.4rem;margin-top:0.25rem;">🖨 ${t('printSave')}</button>
         ${deleteBtn}
       ` : `
         <button class="download-btn" id="dlBtn_${c.id}" onclick="downloadCV(${c.id})">⬇ ${t('downloadCV')}</button>
         ${reserveBtn}
+        <button onclick="toggleFav(${c.id});this.innerHTML=(isFav(${c.id})?'❤️ ':'🤍 ')+t('favBtn')" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #fce4e4;color:#c0392b;border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.4rem;">${isFav(c.id)?'❤️':'🤍'} ${t('favBtn')}</button>
+        <button onclick="openPrintView(${c.id})" style="width:100%;padding:0.65rem;background:#fff;border:1.5px solid #e0e0e0;color:var(--text);border-radius:8px;font-family:inherit;font-size:0.85rem;font-weight:600;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:0.4rem;">🖨 ${t('printSave')}</button>
       `}
     </div>
     <details class="enquiry-section">
@@ -1750,7 +2091,7 @@ function openModal(id) {
       <div class="enquiry-inner">
         <input type="text" id="enqName_${c.id}" placeholder="${t('enquiryName')}">
         <input type="text" id="enqPhone_${c.id}" placeholder="${t('enquiryPhone')}">
-        <textarea id="enqMsg_${c.id}" placeholder="Message about ${c.firstName}…"></textarea>
+        <textarea id="enqMsg_${c.id}" placeholder="${t('enquiryMsg')} ${c.firstName}…"></textarea>
         <button class="enquiry-send-btn" onclick="sendEnquiry(${c.id})">${t('sendWA')}</button>
       </div>
     </details>
@@ -2166,7 +2507,7 @@ function submitCandidate() {
     salary: document.getElementById('salary')?.value || '',
     contractPeriod: document.getElementById('contractPeriod')?.value || '',
     notes: document.getElementById('notes').value,
-    addedDate: new Date().toLocaleDateString('en-KE', { day:'numeric', month:'short', year:'numeric' })
+    addedDate: new Date().toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE', { day:'numeric', month:'short', year:'numeric' })
   };
   candidates.push(c);
   localStorage.setItem('twCandidates', JSON.stringify(candidates));
@@ -2437,7 +2778,7 @@ async function downloadCV(id) {
   rect(0, H-14, W, 14, NAVY);
   rule(0, H-14, W, GOLD, 0.6);
   txt('RecGlobal Domestic Labour Portal', 6, H-7, MUTED, 6.5);
-  rtxt(`Generated ${new Date().toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})}`, W-6, H-7, MUTED, 6.5);
+  rtxt(`Generated ${new Date().toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE',{day:'numeric',month:'short',year:'numeric'})}`, W-6, H-7, MUTED, 6.5);
 
   // ══════════════════════════════════════════
   // SAVE
@@ -2508,21 +2849,24 @@ function openCompareModal() {
   if (compareList.length < 2) { showToast(t('compareMin')); return; }
   const cs = compareList.map(id => candidates.find(x => x.id === id)).filter(Boolean);
   const fields = [
-    ['Role', c => c.role||'—'],
-    ['Nationality', c => c.nationality||'—'],
-    ['Gender', c => c.gender||'—'],
-    ['Experience', c => c.experience ? c.experience+' yrs' : '—'],
-    ['Education', c => c.education||'—'],
-    ['Skills', c => c.skills||'—'],
-    ['Salary (SAR/mo)', c => c.salary ? 'SAR '+c.salary : '—'],
-    ['Contract', c => c.contractPeriod||'—'],
-    ['Status', c => c.status||'—'],
-    ['English', c => /english/i.test(c.skills||'') ? '✓ Yes' : '—'],
-    ['Arabic', c => /arabic/i.test(c.skills||'') ? '✓ Yes' : '—'],
+    [t('role'),        c => c.role||'—'],
+    [t('nationality'), c => c.nationality||'—'],
+    [t('gender'),      c => c.gender||'—'],
+    [t('experience'),  c => c.experience ? c.experience+' '+t('yearsExp') : '—'],
+    [t('education'),   c => c.education||'—'],
+    [t('skills'),      c => c.skills||'—'],
+    ['SAR/'+t('perMonth').replace('/',''), c => c.salary ? 'SAR '+c.salary : '—'],
+    [t('contract'),    c => c.contractPeriod||'—'],
+    [t('status'),      c => c.status||'—'],
+    ['English',        c => /english/i.test(c.skills||'') ? '✓' : '—'],
+    [t('arabic'), c => /arabic/i.test(c.skills||'') ? '✓' : '—'],
   ];
-  const headRow = `<tr><th style="text-align:left">Field</th>${cs.map(c => `<th>${c.photo?`<img src="${c.photo}" alt="${c.firstName}">`:''}${c.firstName} ${c.lastName}</th>`).join('')}</tr>`;
+  const headRow = `<tr><th style="text-align:${currentLang==='ar'?'right':'left'}">${t('compareField')}</th>${cs.map(c => `<th>${c.photo?`<img src="${c.photo}" alt="${c.firstName}">`:''}${c.firstName} ${c.lastName}</th>`).join('')}</tr>`;
   const bodyRows = fields.map(([label, fn]) => `<tr><td>${label}</td>${cs.map(c => `<td style="text-align:center">${fn(c)}</td>`).join('')}</tr>`).join('');
   document.getElementById('compareTable').innerHTML = headRow + bodyRows;
+  // Update compare modal title
+  const compareH3 = document.querySelector('.compare-modal-header h3');
+  if (compareH3) compareH3.textContent = t('compareTitle');
   document.getElementById('compareModalOverlay').classList.add('open');
 }
 
@@ -2664,12 +3008,24 @@ function openPrintView(id) {
   const c = candidates.find(x => x.id === id);
   if (!c) return;
 
+  // Apply RTL to print card
+  const printCard = document.getElementById('printCard');
+  if (currentLang === 'ar') {
+    printCard.setAttribute('dir', 'rtl');
+    printCard.style.fontFamily = "'Cairo', sans-serif";
+  } else {
+    printCard.setAttribute('dir', 'ltr');
+    printCard.style.fontFamily = "'DM Sans', sans-serif";
+  }
+
   document.getElementById('printName').textContent = c.firstName + ' ' + c.lastName;
   document.getElementById('printRole').textContent = c.role || t('roleNotSpecified');
   const ph = document.getElementById('printPhoto');
   ph.innerHTML = c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤';
 
   const stage = getProcessStage(c);
+  const age = calcAge(c.dob);
+  const ageStr = age ? ` (${age} ${t('yearsOld')})` : '';
   const row = (l,v) => v ? `<div class="print-field"><label>${l}</label><span>${v}</span></div>` : '';
 
   document.getElementById('printBody').innerHTML = `
@@ -2681,10 +3037,10 @@ function openPrintView(id) {
     <div class="print-section">
       <div class="print-section-title">${t('personalDetails')}</div>
       <div class="print-fields">
-        ${row(t('dob'), c.dob)}
-        ${row(t('gender'), tv(c.gender))}
+        ${row(t('dob'), c.dob ? c.dob + ageStr : '')}
+        ${row(t('gender'), c.gender)}
         ${row(t('nationality'), c.nationality)}
-        ${row(t('education'), tv(c.education))}
+        ${row(t('education'), c.education)}
         ${row(t('phoneNumber'), c.phone)}
       </div>
     </div>
@@ -2694,8 +3050,8 @@ function openPrintView(id) {
         ${row(t('role'), c.role)}
         ${row(t('experience'), c.experience ? `<span dir="ltr">${c.experience} ${t('yearsExp')}</span>` : '')}
         ${row(t('salary'), c.salary ? `<span dir="ltr">SAR ${c.salary}${t('perMonth')}</span>` : '')}
-        ${row(t('contract'), tv(c.contractPeriod))}
-        ${row(t('status'), tv(c.status))}
+        ${row(t('contract'), c.contractPeriod)}
+        ${row(t('status'), c.status)}
         ${row(t('skills'), c.skills)}
       </div>
     </div>
@@ -2722,7 +3078,7 @@ function openPrintView(id) {
     ${c.notes ? `<div class="print-section"><div class="print-section-title">${t('aboutLabel')}</div><p style="font-size:0.85rem;color:var(--text);line-height:1.6">${c.notes}</p></div>` : ''}
     <div style="margin-top:1.5rem;padding-top:1rem;border-top:1px solid #f0f0f0;display:flex;justify-content:space-between;font-size:0.72rem;color:var(--muted)">
       <span>${t('printPortal')}</span>
-      <span>${t('printGenerated')} ${new Date().toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})}</span>
+      <span>${t('printGenerated')} ${new Date().toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE',{day:'numeric',month:'short',year:'numeric'})}</span>
     </div>
   `;
 
@@ -2825,7 +3181,7 @@ function renderAdminDashboard() {
         ? `<img class="prob-photo" src="${c.photo}" alt="${c.firstName}">`
         : `<div class="prob-photo-placeholder">👤</div>`;
       const employerText = c.placementEmployer ? ` · ${c.placementEmployer}` : '';
-      const endStr = p.end.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'});
+      const endStr = p.end.toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE',{day:'numeric',month:'short',year:'numeric'});
       const countdownHtml = p.done
         ? `<div class="prob-complete">${t('probComplete')}</div>`
         : `<div class="prob-days">${p.daysLeft}</div><div class="prob-days-label">${t('probDaysLeft')}</div>`;
@@ -2834,7 +3190,7 @@ function renderAdminDashboard() {
         <div>
           <div class="prob-name">${c.firstName} ${c.lastName}</div>
           <div class="prob-meta">${c.role||''}${employerText}</div>
-          <div class="prob-meta">${t('probTravel')}: ${p.start.toLocaleDateString('en-KE',{day:'numeric',month:'short',year:'numeric'})} · ${t('probEnd')}: ${endStr}</div>
+          <div class="prob-meta">${t('probTravel')}: ${p.start.toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE',{day:'numeric',month:'short',year:'numeric'})} · ${t('probEnd')}: ${endStr}</div>
           <div class="prob-bar-wrap"><div class="prob-bar ${barClass}" style="width:${p.pct}%"></div></div>
         </div>
         <div class="prob-countdown">${countdownHtml}</div>
@@ -3000,6 +3356,8 @@ const TRANSLATIONS = {
     colEmployer:      'Employer',
     probDaysLeft:     'days left',
     probComplete:     'Completed ✓',
+    probTravel:       'Travel date',
+    probEnd:          'Probation ends',
     // Compare
     compareTitle:     'Candidate Comparison',
     compareField:     'Field',
@@ -3103,6 +3461,23 @@ const TRANSLATIONS = {
     wrongCredentials: 'Incorrect credentials. Please try again.',
     deleteConfirm:    'Delete this candidate profile?',
     copied:           '✓ Link copied!',
+    // New features
+    favBtn:           'Add to shortlist',
+    allNats:          'All nationalities',
+    candidate1:       'candidate',
+    candidatesN:      'candidates',
+    yearsOld:         'yrs old',
+    lblNationality:   'Nationality:',
+    lblSalary:        'Salary (SAR):',
+    sortSalaryAsc:    'Salary ↑',
+    sortSalaryDesc:   'Salary ↓',
+    favFilterLabel:   'Shortlist',
+    darkMode:         'Dark mode',
+    gridView:         'Grid view',
+    listView:         'List view',
+    arabic:           'Arabic',
+    clearFilters:     'Clear filters',
+    clearFilters:     'Clear filters',
   },
   ar: {
     heroTitle:        'المرشحون <span>المتاحون</span>',
@@ -3215,6 +3590,8 @@ const TRANSLATIONS = {
     colEmployer:      'صاحب العمل',
     probDaysLeft:     'يوم متبقي',
     probComplete:     'مكتمل ✓',
+    probTravel:       'تاريخ السفر',
+    probEnd:          'نهاية فترة التجربة',
     compareTitle:     'مقارنة المرشحين',
     compareField:     'الحقل',
     compareEnglish:   'الإنجليزية',
@@ -3306,6 +3683,23 @@ const TRANSLATIONS = {
     wrongCredentials: 'بيانات غير صحيحة. حاول مجدداً.',
     deleteConfirm:    'هل تريد حذف ملف هذا المرشح؟',
     copied:           '✓ تم نسخ الرابط!',
+    // New features
+    favBtn:           'إضافة إلى القائمة المختصرة',
+    allNats:          'جميع الجنسيات',
+    candidate1:       'مرشح',
+    candidatesN:      'مرشحين',
+    yearsOld:         'سنة',
+    lblNationality:   'الجنسية:',
+    lblSalary:        'الراتب (ريال):',
+    sortSalaryAsc:    'الراتب ↑',
+    sortSalaryDesc:   'الراتب ↓',
+    favFilterLabel:   'القائمة المختصرة',
+    darkMode:         'الوضع الداكن',
+    gridView:         'عرض شبكي',
+    listView:         'عرض قائمة',
+    arabic:           'العربية',
+    clearFilters:     'مسح الفلاتر',
+    clearFilters:     'مسح الفلاتر',
   }
 };
 
@@ -3313,35 +3707,6 @@ let currentLang = localStorage.getItem('twLang') || 'en';
 
 function t(key) {
   return TRANSLATIONS[currentLang][key] || TRANSLATIONS['en'][key] || key;
-}
-
-// Translate stored data values (gender, status, education, contract)
-const VALUE_MAP = {
-  'Female':             'optFemale',
-  'Male':               'optMale',
-  'Other':              'optOther',
-  'Available':          'optAvailable',
-  'Placed':             'optPlaced',
-  'Primary':            'optPrimary',
-  'Secondary (Form 4)': 'optSecondary',
-  'Certificate':        'optCertificate',
-  'Diploma':            'optDiploma',
-  'Degree':             'optDegree',
-  '1 Year':             'opt1Year',
-  '2 Years':            'opt2Years',
-  '3 Years':            'opt3Years',
-  'New':                'stageNew',
-  'Training':           'stageTraining',
-  'Passport & PCC Application': 'stagePassport',
-  'Medical':            'stageMedical',
-  'Visa Application':   'stageVisa',
-  'Travel':             'stageTravel',
-  'Completed':          'stageCompleted',
-};
-function tv(val) {
-  if (!val) return val;
-  const key = VALUE_MAP[val];
-  return key ? t(key) : val;
 }
 
 function setLang(lang) {
@@ -3389,25 +3754,50 @@ function applyTranslations() {
 
   // ── Filter chips ──
   const chips = document.querySelectorAll('.filter-chip');
-  const chipKeys = ['allFilter','availableFilter','placedFilter'];
-  chips.forEach((chip, i) => { if (chipKeys[i]) chip.textContent = t(chipKeys[i]); });
+  // chips[0]=All, chips[1]=Available, chips[2]=Placed, chips[3]=Shortlist
+  if (chips[0]) chips[0].textContent = t('allFilter');
+  if (chips[1]) chips[1].textContent = t('availableFilter');
+  if (chips[2]) chips[2].textContent = t('placedFilter');
 
   // ── Filter labels ──
   const labels = document.querySelectorAll('.filter-label');
   if (labels[0]) labels[0].textContent = t('statusLabel');
   if (labels[1]) labels[1].textContent = t('roleLabel');
-  if (labels[2]) labels[2].textContent = t('sortLabel');
+  if (labels[2]) labels[2].textContent = t('lblNationality');
+  if (labels[3]) labels[3].textContent = t('lblSalary');
+  if (labels[4]) labels[4].textContent = t('sortLabel');
+
+  // ── Nationality filter first option ──
+  const natFilter = document.getElementById('nationalityFilter');
+  if (natFilter?.options[0]) natFilter.options[0].text = t('allNats');
+
+  // ── Fav filter label ──
+  const favLblEl = document.getElementById('favFilterLabel');
+  if (favLblEl) favLblEl.textContent = t('favFilterLabel');
+
+  // ── Clear filters label ──
+  const clearLblEl = document.getElementById('clearFiltersLabel');
+  if (clearLblEl) clearLblEl.textContent = t('clearFilters');
+
+  // ── Result count label ──
+  const rclEl = document.getElementById('resultCountLabel');
+  if (rclEl) {
+    const n = parseInt(document.getElementById('resultCountNum')?.textContent) || 0;
+    rclEl.textContent = n === 1 ? t('candidate1') : t('candidatesN');
+  }
 
   // ── Role filter ──
   const roleFilter = document.getElementById('roleFilter');
   if (roleFilter?.options[0]) roleFilter.options[0].text = t('allRoles');
 
-  // ── Sort filter ──
+  // ── Sort filter (now has 5 options) ──
   const sortFilter = document.getElementById('sortFilter');
   if (sortFilter) {
     if (sortFilter.options[0]) sortFilter.options[0].text = t('sortNewest');
     if (sortFilter.options[1]) sortFilter.options[1].text = t('sortName');
     if (sortFilter.options[2]) sortFilter.options[2].text = t('sortExp');
+    if (sortFilter.options[3]) sortFilter.options[3].text = t('sortSalaryAsc');
+    if (sortFilter.options[4]) sortFilter.options[4].text = t('sortSalaryDesc');
   }
 
   // ── Stats bar labels ──
@@ -3596,7 +3986,50 @@ function showToast(msg) {
   setTimeout(() => t.classList.remove('show'), 3200);
 }
 
+// ── CLEAR ALL FILTERS ──
+function clearAllFilters() {
+  document.getElementById('searchInput').value = '';
+  document.getElementById('roleFilter').value = '';
+  document.getElementById('nationalityFilter').value = '';
+  document.getElementById('salaryMin').value = '';
+  document.getElementById('salaryMax').value = '';
+  document.getElementById('sortFilter').value = 'newest';
+  if (favFilter) { favFilter = false; document.getElementById('favFilterBtn').classList.remove('active'); }
+  activeStatusFilter = 'all';
+  document.querySelectorAll('.filter-chip').forEach((b,i) => b.classList.toggle('active', i===0));
+  renderDirectory();
+}
+
+// ── BACK TO TOP ──
+window.addEventListener('scroll', () => {
+  const btn = document.getElementById('backToTop');
+  if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+}, { passive: true });
+
+// ── SHOW/HIDE CLEAR FILTERS BUTTON ──
+function updateClearFiltersVisibility() {
+  const hasFilters = (
+    document.getElementById('searchInput')?.value ||
+    document.getElementById('roleFilter')?.value ||
+    document.getElementById('nationalityFilter')?.value ||
+    document.getElementById('salaryMin')?.value ||
+    document.getElementById('salaryMax')?.value ||
+    activeStatusFilter !== 'all' || favFilter
+  );
+  document.getElementById('clearFiltersBtn')?.classList.toggle('visible', !!hasFilters);
+}
+
 // ── INIT ──
+// Restore dark mode
+if (localStorage.getItem('twDarkMode') === '1') {
+  document.body.classList.add('dark-mode');
+  const dtb = document.getElementById('darkToggleBtn');
+  if (dtb) dtb.textContent = '☀️';
+}
+
+// Restore view mode
+setViewMode(viewMode);
+
 // Restore recruiter session if previously logged in
 if (localStorage.getItem('twRecruiterSession') === '1') {
   isRecruiter = true;
@@ -3612,8 +4045,12 @@ setLang(currentLang);
 
 // Always land on directory and clear add-candidate form
 resetForm();
+populateNationalityFilter();
 renderDirectory();
 </script>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Back to top">↑</button>
 
 <!-- ══ PRINT VIEW MODAL ══ -->
 <div class="print-overlay" id="printOverlay">
@@ -3644,7 +4081,7 @@ renderDirectory();
       <p id="ftDesc">Professional domestic labour recruitment connecting qualified candidates with families across the Gulf region.</p>
       <div class="footer-contact">
         <a href="tel:+254780803955">📞 <span id="ftPhone">+254 780 803 955</span></a>
-        <a href="/cdn-cgi/l/email-protection#c0b2a5a3a7acafa2a1ac80a7ada1a9aceea3afad">✉ <span class="__cf_email__" data-cfemail="2c5e494f4b40434e4d406c4b414d4540024f4341">[email&#160;protected]</span></a>
+        <a href="/cdn-cgi/l/email-protection#285a4d4b4f44474a4944684f45494144064b4745">✉ <span class="__cf_email__" data-cfemail="7406111713181b161518341319151d185a171b19">[email&#160;protected]</span></a>
         <a href="#">📍 <span id="ftLocation">Nairobi, Kenya</span></a>
       </div>
     </div>
@@ -3671,4 +4108,9 @@ renderDirectory();
   </div>
   <div class="footer-bottom">
     <p id="ftCopy">© 2026 RecGlobal. All rights reserved.</p>
-  
+      <p class="footer-tagline" id="ftTagline">Trusted Labour Recruitment — Kenya · Gulf Region</p>
+  </div>
+</footer>
+
+</body>
+</html>
