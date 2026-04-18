@@ -255,6 +255,8 @@
   .modal-field span { font-size: 0.875rem; font-weight: 500; color: var(--text); unicode-bidi: plaintext; }
   body.rtl .modal-field label { text-align: right; }
   body.rtl .modal-field span { text-align: right; display: block; }
+  body.rtl .modal-section-title { text-align: right; letter-spacing: 0; }
+  body.rtl .modal-role { letter-spacing: 0; }
 
   /* ── RESERVE BUTTON (in modal) ── */
   .reserve-btn {
@@ -352,10 +354,22 @@
   .empty-state h3 { font-family: 'Playfair Display', serif; color: var(--navy); margin-bottom: 0.4rem; }
 
   /* ── FILTER BAR ── */
+  .filter-bar-wrap {
+    position: relative; background: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+  }
+  body.dark-mode .filter-bar-wrap { background: #0d1b2a; border-color: rgba(201,168,76,0.15); }
+  .filter-bar-wrap::after {
+    content: ''; position: absolute; top: 0; right: 0; width: 48px; height: 100%;
+    background: linear-gradient(to right, transparent, #fff);
+    pointer-events: none; z-index: 2;
+  }
+  body.rtl .filter-bar-wrap::after { right: auto; left: 0; background: linear-gradient(to left, transparent, #fff); }
+  body.dark-mode .filter-bar-wrap::after { background: linear-gradient(to right, transparent, #0d1b2a); }
+  body.rtl.dark-mode .filter-bar-wrap::after { background: linear-gradient(to left, transparent, #0d1b2a); }
   .filter-bar {
     display: flex; flex-wrap: nowrap; gap: 0.5rem; align-items: center;
-    padding: 0.75rem 1rem; background: #fff;
-    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 0.75rem 1rem; background: transparent;
     width: 100%; overflow-x: auto;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
@@ -368,14 +382,17 @@
   }
   .filter-chip:hover { border-color: var(--gold); color: var(--navy); }
   .filter-chip.active { background: var(--navy); border-color: var(--navy); color: var(--gold-light); }
+  body.dark-mode .filter-chip { background: #162236; border-color: #2a4060; }
   .filter-select {
     padding: 0.35rem 0.75rem; border-radius: 20px; font-size: 0.78rem;
     font-weight: 600; border: 1.5px solid #e0e0e0; background: #fff;
     color: var(--muted); cursor: pointer; font-family: 'DM Sans', sans-serif;
     outline: none; transition: border 0.2s; flex-shrink: 0; max-width: 140px;
   }
+  body.rtl .filter-select { font-family: 'Cairo', sans-serif; direction: rtl; }
   .filter-select:focus { border-color: var(--gold); }
-  .filter-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-right: 0.25rem; flex-shrink: 0; white-space: nowrap; }
+  .filter-label { font-size: 0.72rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-inline-end: 0.25rem; flex-shrink: 0; white-space: nowrap; }
+  body.rtl .filter-label { letter-spacing: 0; }
   .filter-sep { width: 1px; height: 20px; background: #e0e0e0; margin: 0 0.25rem; flex-shrink: 0; }
 
   /* ── COMPARE ── */
@@ -579,7 +596,9 @@
       padding-bottom: 0.2rem;
     }
     .recruiter-nav button { font-size: 0.78rem; padding: 0.4rem 0.7rem; }
+    .header-controls { margin-left: auto; gap: 0.25rem; }
     .lang-switcher { margin-left: 0; }
+    .header-login-btn { font-size: 0.72rem; padding: 0.28rem 0.65rem; }
 
     /* Hero */
     .dir-header h1 { font-size: 1.5rem; }
@@ -1174,8 +1193,13 @@
 
   /* ── PASSPORT EXPIRY WARNING on card (recruiter) ── */
   .expiry-warn { color: #ef4444; font-size: 0.68rem; font-weight: 700; }
+  /* ── HEADER CONTROLS GROUP ── */
+  .header-controls {
+    display: flex; align-items: center; gap: 0.3rem; margin-left: auto; flex-shrink: 0;
+  }
+
   .lang-switcher {
-    display: flex; gap: 0.25rem; align-items: center; margin-left: auto;
+    display: flex; gap: 0.25rem; align-items: center;
   }
   .lang-btn {
     background: none; border: 1.5px solid rgba(201,168,76,0.4);
@@ -1203,12 +1227,12 @@
   body.rtl { direction: rtl; font-family: 'Cairo', sans-serif; }
   body.rtl .logo { font-family: 'Cairo', sans-serif; }
   body.rtl .dir-header h1 { font-family: 'Cairo', sans-serif; }
-  body.rtl .card-name { font-family: 'Cairo', sans-serif; }
+  /* card-name RTL font set in consolidated rule below */
   body.rtl .card-role { font-family: 'Cairo', sans-serif; }
   body.rtl .card-meta-item { font-family: 'Cairo', sans-serif; }
   body.rtl .badge { font-family: 'Cairo', sans-serif; }
-  body.rtl .modal-name { font-family: 'Cairo', sans-serif; }
-  body.rtl .modal-role { font-family: 'Cairo', sans-serif; }
+  body.rtl .modal-name { font-family: 'Cairo', sans-serif; direction: ltr; text-align: right; display: block; }
+  body.rtl .modal-role { font-family: 'Cairo', sans-serif; text-align: right; display: block; }
   body.rtl .modal-field label { font-family: 'Cairo', sans-serif; }
   body.rtl .modal-field span { font-family: 'Cairo', sans-serif; }
   body.rtl .modal-section-title { font-family: 'Cairo', sans-serif; }
@@ -1232,24 +1256,48 @@
   body.rtl .stat-label { font-family: 'Cairo', sans-serif; }
   body.rtl .footer-col ul li { font-family: 'Cairo', sans-serif; }
   body.rtl .footer-brand > p { font-family: 'Cairo', sans-serif; }
-  body.rtl .result-count { font-family: 'Cairo', sans-serif; }
+  body.rtl .result-count { font-family: 'Cairo', sans-serif; margin-right: auto; margin-left: 0; }
   body.rtl .age-badge { font-family: 'Cairo', sans-serif; }
   body.rtl .salary-range-input { font-family: 'Cairo', sans-serif; direction: ltr; text-align: right; }
 
   body.rtl .search-bar svg { left: auto; right: 1rem; }
-  body.rtl .search-bar input { padding: 0.75rem 2.8rem 0.75rem 1rem; font-family: 'Cairo', sans-serif; }
+  body.rtl .search-bar input { padding: 0.75rem 2.8rem 0.75rem 1rem; font-family: 'Cairo', sans-serif; direction: rtl; text-align: right; }
   body.rtl .filter-bar { direction: rtl; }
   body.rtl .modal-top { flex-direction: row-reverse; }
   body.rtl .modal-close { right: auto; left: 1rem; }
   body.rtl .card-footer { flex-direction: row-reverse; }
   body.rtl .recruiter-nav { flex-direction: row-reverse; }
-  body.rtl .lang-switcher { margin-left: 0; margin-right: auto; }
-  body.rtl header { flex-direction: row-reverse; }
-  body.rtl .view-toggle { order: -1; }
-  body.rtl .dark-toggle-btn { margin-left: 0; margin-right: 0.25rem; }
+  /* ── RTL HEADER CONTROLS ── */
+  body.rtl .header-controls { margin-left: 0; margin-right: auto; flex-direction: row-reverse; }
+  body.rtl header { flex-direction: row-reverse; gap: 0.4rem; }
+
+  /* ── RTL CARD FIXES ── */
+  body.rtl .candidate-card { direction: rtl; }
+  body.rtl .card-body { text-align: right; }
+
+  body.rtl .card-role { text-align: right; letter-spacing: 0; }
+  body.rtl .card-meta { align-items: flex-end; }
+  body.rtl .card-meta-item { flex-direction: row-reverse; justify-content: flex-end; width: 100%; }
+  body.rtl .card-footer { flex-direction: row-reverse; }
+  body.rtl .compare-checkbox { right: auto; left: 0.5rem; }
   body.rtl .fav-btn { right: auto; left: 0.5rem; }
-  body.rtl .compare-checkbox { left: auto; right: 0.5rem; }
-  body.rtl .card-meta { direction: rtl; }
+
+  /* In RTL, keep name LTR (Latin names stay readable) */
+  body.rtl .card-name { font-family: 'Cairo', sans-serif; direction: ltr; text-align: right; display: flex; justify-content: flex-end; align-items: center; gap: 0.35rem; unicode-bidi: embed; flex-wrap: wrap; }
+
+  /* ── RTL FILTER BAR ── */
+  body.rtl .filter-bar { flex-direction: row-reverse; }
+  body.rtl .filter-label { margin-right: 0; margin-left: 0.25rem; }
+
+  /* ── RTL MOBILE (≤540px) card specifics ── */
+  @media (max-width: 540px) {
+    body.rtl .candidate-card { grid-template-columns: 1fr 110px; }
+    body.rtl .card-photo { grid-column: 2; grid-row: 1 / 3; }
+    body.rtl .card-body { grid-column: 1; }
+    body.rtl .card-footer { grid-column: 1; }
+    body.rtl .compare-checkbox { left: auto; right: 0.5rem; }
+    body.rtl .fav-btn { left: auto; right: auto; left: 0.5rem; }
+  }
   body.rtl .modal-fields { direction: rtl; }
   body.rtl .modal-body { direction: rtl; }
   body.rtl .print-header { flex-direction: row-reverse; }
@@ -1397,16 +1445,18 @@
     <button class="active" onclick="showPage('admin',this);renderAdminDashboard()">Dashboard</button>
     <button onclick="showPage('upload', this)">+ Add Candidate</button>
   </nav>
-  <div class="lang-switcher">
-    <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
-    <button class="lang-btn" id="btnAR" onclick="setLang('ar')">عر</button>
+  <div class="header-controls">
+    <div class="lang-switcher">
+      <button class="lang-btn active" id="btnEN" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btnAR" onclick="setLang('ar')">عر</button>
+    </div>
+    <div class="view-toggle" id="viewToggleWrap">
+      <button class="view-toggle-btn active" id="btnGridView" onclick="setViewMode('grid')" title="Grid view">⊞</button>
+      <button class="view-toggle-btn" id="btnListView" onclick="setViewMode('list')" title="List view">☰</button>
+    </div>
+    <button class="dark-toggle-btn" id="darkToggleBtn" onclick="toggleDarkMode()">🌙</button>
+    <button class="header-login-btn" id="headerLoginBtn" onclick="handleHeaderLogin()">🔐 Login</button>
   </div>
-  <div class="view-toggle" id="viewToggleWrap" title="Toggle view">
-    <button class="view-toggle-btn active" id="btnGridView" onclick="setViewMode('grid')" title="Grid view">⊞</button>
-    <button class="view-toggle-btn" id="btnListView" onclick="setViewMode('list')" title="List view">☰</button>
-  </div>
-  <button class="dark-toggle-btn" id="darkToggleBtn" onclick="toggleDarkMode()" title="Toggle dark mode">🌙</button>
-  <button class="header-login-btn" id="headerLoginBtn" onclick="handleHeaderLogin()">🔐 Login</button>
 </header>
 
 <!-- ══════════════════════════════════════════
@@ -1432,6 +1482,7 @@
   </div>
 
   <!-- Filter bar -->
+  <div class="filter-bar-wrap">
   <div class="filter-bar" id="filterBar">
     <span class="filter-label">Status:</span>
     <button class="filter-chip active" onclick="setStatusFilter('all',this)">All</button>
@@ -1441,14 +1492,14 @@
     <span class="filter-label">Role:</span>
     <select class="filter-select" id="roleFilter" onchange="renderDirectory()">
       <option value="">All roles</option>
-      <option>Housekeeper</option>
-      <option>Nanny / Childcare</option>
-      <option>Cook</option>
-      <option>Driver</option>
-      <option>Gardener</option>
-      <option>Security Guard</option>
-      <option>Caregiver (Elderly)</option>
-      <option>General Helper</option>
+      <option value="Housekeeper">Housekeeper</option>
+      <option value="Nanny / Childcare">Nanny / Childcare</option>
+      <option value="Cook">Cook</option>
+      <option value="Driver">Driver</option>
+      <option value="Gardener">Gardener</option>
+      <option value="Security Guard">Security Guard</option>
+      <option value="Caregiver (Elderly)">Caregiver (Elderly)</option>
+      <option value="General Helper">General Helper</option>
     </select>
     <div class="filter-sep"></div>
     <span class="filter-label" id="lblNationality">Nationality:</span>
@@ -1476,6 +1527,7 @@
     <button class="clear-filters-btn" id="clearFiltersBtn" onclick="clearAllFilters()">✕ <span id="clearFiltersLabel">Clear</span></button>
     <span class="result-count" id="resultCount"><span class="result-count-num" id="resultCountNum">0</span> <span id="resultCountLabel">candidates</span></span>
   </div>
+  </div><!-- /.filter-bar-wrap -->
 
   <div class="candidates-grid" id="candidatesGrid"></div>
 </div>
@@ -1656,7 +1708,7 @@
       <div class="form-group"><label>Issuing Country</label><input type="text" id="passportCountry" placeholder="Kenya"></div>
 
       <div class="section-divider full"><span>Work Details</span></div>
-      <div class="form-group"><label>Role / Position</label><select id="role"><option value="">Select role</option><option>Housekeeper</option><option>Nanny / Childcare</option><option>Cook</option><option>Driver</option><option>Gardener</option><option>Security Guard</option><option>Caregiver (Elderly)</option><option>General Helper</option></select></div>
+      <div class="form-group"><label>Role / Position</label><select id="role"><option value="">Select role</option><option value="Housekeeper">Housekeeper</option><option value="Nanny / Childcare">Nanny / Childcare</option><option value="Cook">Cook</option><option value="Driver">Driver</option><option value="Gardener">Gardener</option><option value="Security Guard">Security Guard</option><option value="Caregiver (Elderly)">Caregiver (Elderly)</option><option value="General Helper">General Helper</option></select></div>
       <div class="form-group"><label>Years of Experience</label><input type="number" id="experience" placeholder="e.g. 3" min="0" max="40"></div>
       <div class="form-group"><label>Education Level</label><select id="education"><option value="">Select</option><option>Primary</option><option>Secondary (Form 4)</option><option>Certificate</option><option>Diploma</option><option>Degree</option></select></div>
 
@@ -1979,9 +2031,9 @@ function renderDirectory() {
       <div class="card-photo">${c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤'}</div>
       <div class="card-body">
         <div class="card-name">${c.firstName} ${c.lastName}${age ? ` <span class="age-badge">${age}</span>` : ''}</div>
-        <div class="card-role">${c.role || t('roleNotSpecified')}</div>
+        <div class="card-role">${tv(c.role) || t('roleNotSpecified')}</div>
         <div class="card-meta">
-          ${c.nationality ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${c.nationality}</div>` : ''}
+          ${c.nationality ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>${tv(c.nationality)}</div>` : ''}
           ${c.experience ? `<div class="card-meta-item"><svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>${c.experience} ${t('yearsExp')}</div>` : ''}
           ${c.salary ? `<div class="card-meta-item">💰 SAR ${c.salary}${t('perMonth')}</div>` : ''}
           ${isRecruiter ? stageBadgeHtml(getProcessStage(c)) : ''}
@@ -2000,7 +2052,7 @@ function openModal(id) {
   const c = candidates.find(x => x.id === id);
   if (!c) return;
   document.getElementById('modalName').textContent = `${c.firstName} ${c.lastName}`;
-  document.getElementById('modalRole').textContent = c.role || t('roleNotSpecified');
+  document.getElementById('modalRole').textContent = tv(c.role) || t('roleNotSpecified');
   const ph = document.getElementById('modalPhoto');
   ph.innerHTML = c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤';
 
@@ -2038,14 +2090,14 @@ function openModal(id) {
     ${reservedBanner}
     <div class="modal-section">
       <div class="modal-section-title">${t('personalDetails')}</div>
-      <div class="modal-fields">${row(t('dob'),c.dob ? c.dob + ageStr : '')}${row(t('gender'),c.gender)}${row(t('nationality'),c.nationality)}${row(t('education'),c.education)}</div>
+      <div class="modal-fields">${row(t('dob'),c.dob ? c.dob + ageStr : '')}${row(t('gender'),tv(c.gender))}${row(t('nationality'),tv(c.nationality))}${row(t('education'),tv(c.education))}</div>
     </div>
     <div class="modal-section">
       <div class="modal-section-title">${t('workDetails')}</div>
       <div class="modal-fields">
-        ${row(t('role'),c.role)}${row(t('experience'),c.experience?`<span dir="ltr">${c.experience} ${t('yearsExp')}</span>`:'')}${row(t('status'),c.status)}${row(t('skills'),c.skills)}
-        ${c.salary ? row(t('salary'), `<span dir="ltr">SAR ${c.salary}/month</span>`) : ''}
-        ${c.contractPeriod ? row(t('contract'), c.contractPeriod) : ''}
+        ${row(t('role'),tv(c.role))}${row(t('experience'),c.experience?`<span dir="ltr">${c.experience} ${t('yearsExp')}</span>`:'')}${row(t('status'),tv(c.status))}${row(t('skills'),tvSkills(c.skills))}
+        ${c.salary ? row(t('salary'), `<span dir="ltr">SAR ${c.salary}${t('perMonth')}</span>`) : ''}
+        ${c.contractPeriod ? row(t('contract'), tv(c.contractPeriod)) : ''}
       </div>
     </div>
     ${c.notes ? `<div class="modal-section"><div class="modal-section-title">${t('aboutLabel')}</div><p style="font-size:0.875rem;color:var(--text);line-height:1.6">${c.notes}</p></div>` : ''}
@@ -2056,7 +2108,7 @@ function openModal(id) {
       <div class="status-pipeline">
         ${renderProcessBar(getProcessStage(c))}
         <select class="pipeline-select" onchange="saveProcessStage(${c.id}, this.value)">
-          ${PROCESS_STAGES.map(s => '<option value="' + s + '" ' + (getProcessStage(c)===s?'selected':'') + '>' + s + '</option>').join('')}
+          ${PROCESS_STAGES.map(s => '<option value="' + s + '" ' + (getProcessStage(c)===s?'selected':'') + '>' + tStage(s) + '</option>').join('')}
         </select>
       </div>
     </div>` : ''}
@@ -2849,17 +2901,17 @@ function openCompareModal() {
   if (compareList.length < 2) { showToast(t('compareMin')); return; }
   const cs = compareList.map(id => candidates.find(x => x.id === id)).filter(Boolean);
   const fields = [
-    [t('role'),        c => c.role||'—'],
-    [t('nationality'), c => c.nationality||'—'],
-    [t('gender'),      c => c.gender||'—'],
+    [t('role'),        c => tv(c.role)||'—'],
+    [t('nationality'), c => tv(c.nationality)||'—'],
+    [t('gender'),      c => tv(c.gender)||'—'],
     [t('experience'),  c => c.experience ? c.experience+' '+t('yearsExp') : '—'],
-    [t('education'),   c => c.education||'—'],
-    [t('skills'),      c => c.skills||'—'],
+    [t('education'),   c => tv(c.education)||'—'],
+    [t('skills'),      c => tvSkills(c.skills)||'—'],
     ['SAR/'+t('perMonth').replace('/',''), c => c.salary ? 'SAR '+c.salary : '—'],
-    [t('contract'),    c => c.contractPeriod||'—'],
-    [t('status'),      c => c.status||'—'],
-    ['English',        c => /english/i.test(c.skills||'') ? '✓' : '—'],
-    [t('arabic'), c => /arabic/i.test(c.skills||'') ? '✓' : '—'],
+    [t('contract'),    c => tv(c.contractPeriod)||'—'],
+    [t('status'),      c => tv(c.status)||'—'],
+    [t('englishLang')||'English', c => /english/i.test(c.skills||'') ? '✓' : '—'],
+    [t('arabic'),      c => /arabic/i.test(c.skills||'') ? '✓' : '—'],
   ];
   const headRow = `<tr><th style="text-align:${currentLang==='ar'?'right':'left'}">${t('compareField')}</th>${cs.map(c => `<th>${c.photo?`<img src="${c.photo}" alt="${c.firstName}">`:''}${c.firstName} ${c.lastName}</th>`).join('')}</tr>`;
   const bodyRows = fields.map(([label, fn]) => `<tr><td>${label}</td>${cs.map(c => `<td style="text-align:center">${fn(c)}</td>`).join('')}</tr>`).join('');
@@ -2889,7 +2941,7 @@ function openEditModal(id) {
     <div class="form-grid">
       <div class="form-group"><label>${t('firstName')}</label><input type="text" id="e_firstName" value="${c.firstName||''}"></div>
       <div class="form-group"><label>${t('lastName')}</label><input type="text" id="e_lastName" value="${c.lastName||''}"></div>
-      <div class="form-group"><label>${t('rolePosition')}</label><select id="e_role">${roles.map(r=>`<option value="${r}"${c.role===r?' selected':''}>${r}</option>`).join('')}</select></div>
+      <div class="form-group"><label>${t('rolePosition')}</label><select id="e_role">${roles.map(r=>`<option value="${r}"${c.role===r?' selected':''}>${tv(r)}</option>`).join('')}</select></div>
       <div class="form-group"><label>${t('yearsOfExp')}</label><input type="number" id="e_experience" value="${c.experience||''}" min="0" max="40"></div>
       <div class="form-group"><label>${t('nationality')}</label><input type="text" id="e_nationality" value="${c.nationality||''}"></div>
       <div class="form-group"><label>${t('phoneNumber')}</label><input type="text" id="e_phone" value="${c.phone||''}"></div>
@@ -2958,6 +3010,20 @@ const STAGE_COLORS = {
   'Completed':                {bg:'#dcfce7', color:'#15803d'},
 };
 
+// Translate process stage name for display only (data stays as English key)
+function tStage(stage) {
+  const map = {
+    'New':                       t('stageNew'),
+    'Training':                  t('stageTraining'),
+    'Passport & PCC Application':t('stagePassport'),
+    'Medical':                   t('stageMedical'),
+    'Visa Application':          t('stageVisa'),
+    'Travel':                    t('stageTravel'),
+    'Completed':                 t('stageCompleted'),
+  };
+  return map[stage] || stage;
+}
+
 function getProcessStage(c) {
   return c.processStage || 'New';
 }
@@ -2966,13 +3032,13 @@ function renderProcessBar(currentStage) {
   const curIdx = PROCESS_STAGES.indexOf(currentStage);
   return `<div class="process-bar">${PROCESS_STAGES.map((s, i) => {
     const cls = i < curIdx ? 'done' : i === curIdx ? 'active' : 'pending';
-    return `<div class="process-step ${cls}">${s}</div>`;
+    return `<div class="process-step ${cls}">${tStage(s)}</div>`;
   }).join('')}</div>`;
 }
 
 function stageBadgeHtml(stage) {
   const col = STAGE_COLORS[stage] || {bg:'#f0f0f0',color:'#666'};
-  return `<span class="card-process-badge" style="background:${col.bg};color:${col.color}">${stage}</span>`;
+  return `<span class="card-process-badge" style="background:${col.bg};color:${col.color}">${tStage(stage)}</span>`;
 }
 
 function saveProcessStage(id, stage) {
@@ -2984,7 +3050,7 @@ function saveProcessStage(id, stage) {
   if (isRecruiter) renderAdminDashboard();
   // Reopen modal with updated data after a brief tick
   setTimeout(() => openModal(id), 50);
-  showToast(t('stageUpdated') + ' ' + stage);
+  showToast(t('stageUpdated') + ' ' + tStage(stage));
 }
 
 function savePlacement(id) {
@@ -3019,7 +3085,7 @@ function openPrintView(id) {
   }
 
   document.getElementById('printName').textContent = c.firstName + ' ' + c.lastName;
-  document.getElementById('printRole').textContent = c.role || t('roleNotSpecified');
+  document.getElementById('printRole').textContent = tv(c.role) || t('roleNotSpecified');
   const ph = document.getElementById('printPhoto');
   ph.innerHTML = c.photo ? `<img src="${c.photo}" alt="${c.firstName}">` : '👤';
 
@@ -3032,27 +3098,27 @@ function openPrintView(id) {
     <div class="print-section">
       <div class="print-section-title">${t('processStatus')}</div>
       ${renderProcessBar(stage)}
-      <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted)">${t('currentStage')} <strong style="color:var(--navy)">${stage}</strong></div>
+      <div style="margin-top:0.5rem;font-size:0.8rem;color:var(--muted)">${t('currentStage')} <strong style="color:var(--navy)">${tStage(stage)}</strong></div>
     </div>
     <div class="print-section">
       <div class="print-section-title">${t('personalDetails')}</div>
       <div class="print-fields">
         ${row(t('dob'), c.dob ? c.dob + ageStr : '')}
-        ${row(t('gender'), c.gender)}
-        ${row(t('nationality'), c.nationality)}
-        ${row(t('education'), c.education)}
+        ${row(t('gender'), tv(c.gender))}
+        ${row(t('nationality'), tv(c.nationality))}
+        ${row(t('education'), tv(c.education))}
         ${row(t('phoneNumber'), c.phone)}
       </div>
     </div>
     <div class="print-section">
       <div class="print-section-title">${t('workDetails')}</div>
       <div class="print-fields">
-        ${row(t('role'), c.role)}
+        ${row(t('role'), tv(c.role))}
         ${row(t('experience'), c.experience ? `<span dir="ltr">${c.experience} ${t('yearsExp')}</span>` : '')}
         ${row(t('salary'), c.salary ? `<span dir="ltr">SAR ${c.salary}${t('perMonth')}</span>` : '')}
-        ${row(t('contract'), c.contractPeriod)}
-        ${row(t('status'), c.status)}
-        ${row(t('skills'), c.skills)}
+        ${row(t('contract'), tv(c.contractPeriod))}
+        ${row(t('status'), tv(c.status))}
+        ${row(t('skills'), tvSkills(c.skills))}
       </div>
     </div>
     <div class="print-section">
@@ -3158,7 +3224,7 @@ function renderAdminDashboard() {
     const pct   = Math.round((count / maxCount) * 100);
     const color = STAGE_BAR_COLORS[stage] || '#9ca3af';
     return `<div class="funnel-row">
-      <div class="funnel-stage">${stage}</div>
+      <div class="funnel-stage">${tStage(stage)}</div>
       <div class="funnel-bar-wrap"><div class="funnel-bar" style="width:${pct}%;background:${color}"></div></div>
       <div class="funnel-count">${count}</div>
     </div>`;
@@ -3189,7 +3255,7 @@ function renderAdminDashboard() {
         ${photoHtml}
         <div>
           <div class="prob-name">${c.firstName} ${c.lastName}</div>
-          <div class="prob-meta">${c.role||''}${employerText}</div>
+          <div class="prob-meta">${tv(c.role)||''}${employerText}</div>
           <div class="prob-meta">${t('probTravel')}: ${p.start.toLocaleDateString(currentLang==='ar'?'ar-SA':'en-KE',{day:'numeric',month:'short',year:'numeric'})} · ${t('probEnd')}: ${endStr}</div>
           <div class="prob-bar-wrap"><div class="prob-bar ${barClass}" style="width:${p.pct}%"></div></div>
         </div>
@@ -3221,10 +3287,10 @@ function renderAdminDashboard() {
     const employer = c.placementEmployer || '—';
     return `<tr onclick="openModal(${c.id})">
       <td class="td-photo">${photoTd}</td>
-      <td><div class="td-name">${c.firstName} ${c.lastName}</div><div class="td-nat">${c.nationality||''}</div></td>
-      <td class="td-role">${c.role||'—'}</td>
-      <td class="td-nat">${c.nationality||'—'}</td>
-      <td class="td-stage"><span style="background:${stageBg};color:${stageCol}">${stage}</span></td>
+      <td><div class="td-name">${c.firstName} ${c.lastName}</div><div class="td-nat">${tv(c.nationality)||''}</div></td>
+      <td class="td-role">${tv(c.role)||'—'}</td>
+      <td class="td-nat">${tv(c.nationality)||'—'}</td>
+      <td class="td-stage"><span style="background:${stageBg};color:${stageCol}">${tStage(stage)}</span></td>
       <td style="${expiryStyle};font-size:0.75rem">${expiry}</td>
       <td style="font-size:0.75rem;color:var(--muted)">${employer}</td>
       <td><button class="td-action" onclick="event.stopPropagation();openModal(${c.id})">${t('viewBtn')}</button></td>
@@ -3477,7 +3543,7 @@ const TRANSLATIONS = {
     listView:         'List view',
     arabic:           'Arabic',
     clearFilters:     'Clear filters',
-    clearFilters:     'Clear filters',
+    englishLang:      'English',
   },
   ar: {
     heroTitle:        'المرشحون <span>المتاحون</span>',
@@ -3699,7 +3765,7 @@ const TRANSLATIONS = {
     listView:         'عرض قائمة',
     arabic:           'العربية',
     clearFilters:     'مسح الفلاتر',
-    clearFilters:     'مسح الفلاتر',
+    englishLang:      'الإنجليزية',
   }
 };
 
@@ -3707,6 +3773,91 @@ let currentLang = localStorage.getItem('twLang') || 'en';
 
 function t(key) {
   return TRANSLATIONS[currentLang][key] || TRANSLATIONS['en'][key] || key;
+}
+
+// ── VALUE TRANSLATION MAP ──
+// Translates stored English data values → display language
+const VALUE_MAP = {
+  ar: {
+    // Gender
+    'Female': 'أنثى',
+    'Male': 'ذكر',
+    'Other': 'أخرى',
+    // Status
+    'Available': 'متاح',
+    'Placed': 'موظف',
+    // Education
+    'Primary': 'ابتدائي',
+    'Secondary (Form 4)': 'ثانوي (الصف الرابع)',
+    'Certificate': 'شهادة',
+    'Diploma': 'دبلوم',
+    'Degree': 'درجة علمية',
+    // Roles
+    'Housekeeper': 'عاملة منزل',
+    'Nanny / Childcare': 'مربية أطفال',
+    'Cook': 'طباخ/ة',
+    'Driver': 'سائق',
+    'Gardener': 'بستاني',
+    'Security Guard': 'حارس أمن',
+    'Caregiver (Elderly)': 'مقدم رعاية (كبار السن)',
+    'General Helper': 'مساعد عام',
+    // Contract periods
+    '1 Year': 'سنة واحدة',
+    '2 Years': 'سنتان',
+    '3 Years': '3 سنوات',
+    // Nationalities
+    'Kenyan': 'كينية',
+    'Ugandan': 'أوغندية',
+    'Tanzanian': 'تنزانية',
+    'Ethiopian': 'إثيوبية',
+    'Nigerian': 'نيجيرية',
+    'Ghanaian': 'غانية',
+    'Rwandan': 'رواندية',
+    'Filipino': 'فلبينية',
+    'Indonesian': 'إندونيسية',
+    'Sri Lankan': 'سريلانكية',
+    // Skills (individual skill tokens)
+    'Housekeeping': 'التنظيف المنزلي',
+    'Laundry': 'الغسيل',
+    'Cooking': 'الطبخ',
+    'Cleaning': 'التنظيف',
+    'Ironing': 'الكي',
+    'Childcare': 'رعاية الأطفال',
+    'Babysitting': 'مراقبة الأطفال',
+    'First Aid': 'إسعافات أولية',
+    'Driving': 'القيادة',
+    'Gardening': 'البستنة',
+    'Patient Care': 'رعاية المرضى',
+    'Elderly Care': 'رعاية المسنين',
+    'Medication Management': 'إدارة الأدوية',
+    'Meal Planning': 'تخطيط الوجبات',
+    'Baking': 'الخبز',
+    'English': 'الإنجليزية',
+    'Swahili': 'السواحيلية',
+    'Arabic': 'العربية',
+    'Arabic (Basic)': 'العربية (أساسي)',
+    'Luganda': 'اللوغاندية',
+    'Luo': 'اللوو',
+    'French': 'الفرنسية',
+    'Somali': 'الصومالية',
+    'Amharic': 'الأمهرية',
+    'Defensive Driving': 'القيادة الدفاعية',
+    'Vehicle Maintenance': 'صيانة المركبات',
+    'Physiotherapy Support': 'دعم العلاج الطبيعي',
+    'East African Cuisine': 'المطبخ الأفريقي الشرقي',
+  }
+};
+
+// Translate a stored value for display
+function tv(val) {
+  if (!val || currentLang !== 'ar') return val;
+  return VALUE_MAP.ar[val.trim()] || val;
+}
+
+// Translate a comma-separated skills string
+function tvSkills(skillsStr) {
+  if (!skillsStr || currentLang !== 'ar') return skillsStr;
+  return skillsStr.split(',').map(s => tv(s.trim())).join('، ');
 }
 
 function setLang(lang) {
@@ -3786,9 +3937,20 @@ function applyTranslations() {
     rclEl.textContent = n === 1 ? t('candidate1') : t('candidatesN');
   }
 
-  // ── Role filter ──
+  // ── Role filter options ──
+  const ROLE_KEYS = ['Housekeeper','Nanny / Childcare','Cook','Driver','Gardener','Security Guard','Caregiver (Elderly)','General Helper'];
   const roleFilter = document.getElementById('roleFilter');
-  if (roleFilter?.options[0]) roleFilter.options[0].text = t('allRoles');
+  if (roleFilter) {
+    if (roleFilter.options[0]) roleFilter.options[0].text = t('allRoles');
+    ROLE_KEYS.forEach((r, i) => { if (roleFilter.options[i+1]) roleFilter.options[i+1].text = tv(r); });
+  }
+
+  // ── Add-candidate role select options ──
+  const roleSel = document.getElementById('role');
+  if (roleSel) {
+    if (roleSel.options[0]) roleSel.options[0].text = t('selectRole');
+    ROLE_KEYS.forEach((r, i) => { if (roleSel.options[i+1]) roleSel.options[i+1].text = tv(r); });
+  }
 
   // ── Sort filter (now has 5 options) ──
   const sortFilter = document.getElementById('sortFilter');
@@ -3867,7 +4029,13 @@ function applyTranslations() {
   if (adminSearch) adminSearch.placeholder = t('adminSearchPH');
 
   const adminStageFilter = document.getElementById('adminStageFilter');
-  if (adminStageFilter?.options[0]) adminStageFilter.options[0].text = t('adminAllStages');
+  if (adminStageFilter) {
+    if (adminStageFilter.options[0]) adminStageFilter.options[0].text = t('adminAllStages');
+    // options 1-7 correspond to PROCESS_STAGES
+    PROCESS_STAGES.forEach((s, i) => {
+      if (adminStageFilter.options[i + 1]) adminStageFilter.options[i + 1].text = tStage(s);
+    });
+  }
 
   const adminSortFilter = document.getElementById('adminSortFilter');
   if (adminSortFilter) {
@@ -3974,9 +4142,7 @@ function applyTranslations() {
     contractSel.options[3].text = t('opt3Years');
   }
 
-  // ── Role select first option ──
-  const roleSel = document.getElementById('role');
-  if (roleSel && roleSel.options[0]) roleSel.options[0].text = t('selectRole');
+  // ── Role select first option — handled above in role filter section ──
 }
 
 function showToast(msg) {
